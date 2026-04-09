@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>elisa — partner per crescere</title>
+<meta name="description" content="Consulenza strategica e manageriale per persone e aziende.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#1D9E75;--teal-l:#E1F5EE;--teal-d:#0F6E56;
+  --mag:#C2185B;--mag-l:#FCE4EC;--mag-d:#880E4F;
+  --sky:#0288D1;--sky-l:#E1F5FE;--sky-d:#01579B;
+  --bg:#fafaf8;--bg2:#f0efeb;--bg3:#e8e7e2;
+  --text:#1a1a17;--text2:#5F5E5A;--text3:#9c9a92;
+  --card:#ffffff;--card-h:rgba(0,0,0,.02);
+  --border:rgba(0,0,0,.08);--border2:rgba(0,0,0,.12);
+  --display:'Playfair Display',Georgia,serif;
+  --body:'Outfit',system-ui,sans-serif;
+}
+html.dark{
+  --bg:#0e0e0c;--bg2:#1a1a17;--bg3:#252520;
+  --text:#f5f4f0;--text2:#9c9a92;--text3:#6b6a64;
+  --card:rgba(255,255,255,.04);--card-h:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .4s,color .3s;
+  background:linear-gradient(170deg,
+    color-mix(in srgb,var(--teal) 3.5%,var(--bg)) 0%,
+    var(--bg) 35%,
+    color-mix(in srgb,var(--mag) 2.5%,var(--bg)) 60%,
+    var(--bg) 80%,
+    color-mix(in srgb,var(--sky) 3%,var(--bg)) 100%);
+  min-height:100vh}
+::selection{background:var(--teal);color:#fff}
+.page{display:none;min-height:100vh}.page.active{display:block}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1.5rem,4vw,3rem);height:64px;display:flex;align-items:center;justify-content:space-between;transition:background .3s}
+nav.scrolled{background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-left{display:flex;align-items:center}
+.nav-logo{font-family:var(--display);font-size:22px;font-weight:500;letter-spacing:-.5px;cursor:pointer;color:var(--text);white-space:nowrap}
+.nav-logo .sl{transition:color .35s,opacity .35s}
+.nav-right{display:flex;align-items:center;gap:2px}
+.nav-right a{text-decoration:none;color:var(--text3);font-size:12px;font-weight:500;padding:7px 14px;border-radius:6px;transition:all .2s;letter-spacing:.5px;text-transform:uppercase}
+.nav-right a:hover{color:var(--text)}
+.nav-right a.active{color:#fff}
+.nav-right a[data-v="marketing"].active{background:var(--mag)}
+.nav-right a[data-v="impact"].active{background:var(--sky)}
+.nav-right a[data-v="ai"].active{background:var(--teal)}
+.nav-right a[data-v="about"].active,.nav-right a[data-v="partners"].active,.nav-right a[data-v="home"].active{background:var(--text);color:var(--bg)}
+.theme-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-left:10px;transition:border-color .2s;color:var(--text2)}
+.theme-btn:hover{border-color:var(--border2)}
+.theme-btn svg{width:16px;height:16px}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.hamburger span{width:22px;height:1.5px;background:var(--text);transition:all .3s}
+.mob-menu{display:none;position:fixed;inset:0;z-index:99;background:color-mix(in srgb,var(--bg) 97%,transparent);backdrop-filter:blur(30px);flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:var(--display);font-size:28px;color:var(--text);text-decoration:none;opacity:.5;transition:opacity .2s}
+.mob-menu a:hover{opacity:1}
+.mob-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border:none;background:none;cursor:pointer;color:var(--text);font-size:28px;display:flex;align-items:center;justify-content:center}
+@media(prefers-reduced-motion:reduce){.orb,.shape,.scroll-line,.scroll-line::after{animation:none!important}.reveal{transition:none!important;opacity:1!important;transform:none!important}}
+
+/* HERO */
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:0 clamp(1.5rem,4vw,3rem);position:relative;overflow:hidden}
+.hero-inner{position:relative;z-index:3;max-width:780px;width:100%}
+/* ANIMATED MESH */
+.hero-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-mesh .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.35;animation:drift 20s ease-in-out infinite alternate}
+html.dark .hero-mesh .orb{opacity:.2}
+.orb-1{width:45vw;height:45vw;top:-15%;right:-10%;background:color-mix(in srgb,var(--teal) 25%,transparent);animation-duration:22s}
+.orb-2{width:35vw;height:35vw;bottom:-10%;left:-5%;background:color-mix(in srgb,var(--mag) 20%,transparent);animation-duration:26s;animation-delay:-8s}
+.orb-3{width:25vw;height:25vw;top:40%;left:50%;background:color-mix(in srgb,var(--sky) 18%,transparent);animation-duration:30s;animation-delay:-14s}
+@keyframes drift{
+  0%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(30px,-20px) scale(1.05)}
+  50%{transform:translate(-20px,30px) scale(.95)}
+  75%{transform:translate(15px,15px) scale(1.02)}
+  100%{transform:translate(-25px,-15px) scale(1)}
+}
+/* MOUSE GLOW */
+.mouse-glow{position:absolute;width:400px;height:400px;border-radius:50%;pointer-events:none;z-index:1;filter:blur(100px);opacity:0;transition:opacity .6s;background:rgba(255,255,255,.15)}
+html.dark .mouse-glow{background:rgba(255,255,255,.06)}
+.hero:hover .mouse-glow{opacity:1}
+/* GRAIN */
+.hero-grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:128px 128px}
+html.dark .hero-grain{opacity:.06}
+/* FLOATING SHAPES */
+.hero-shapes{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.hero-shapes .shape{position:absolute;border:1px solid;border-radius:50%;opacity:.08;animation:float linear infinite}
+html.dark .hero-shapes .shape{opacity:.06}
+@keyframes float{
+  0%{transform:translateY(0) rotate(0deg)}
+  100%{transform:translateY(-100vh) rotate(360deg)}
+}
+/* (grid removed) */
+.hero-title{font-family:var(--display);font-size:clamp(32px,5.5vw,64px);line-height:1.2;letter-spacing:-1.5px;margin-bottom:2rem;min-height:clamp(80px,12vw,160px);max-width:480px;opacity:0;animation:fadeUp .8s .1s ease forwards}
+.hero-title .c{font-weight:500}
+.hero-sub{font-size:clamp(15px,1.7vw,17px);color:var(--text2);line-height:1.9;font-weight:300;max-width:580px;margin-bottom:2.5rem;opacity:0;animation:fadeUp .8s .4s ease forwards}
+.hero-sub .hl{color:var(--text);font-weight:500}
+.hero-cta{display:inline-flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .55s ease forwards}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:8px;font-family:var(--body);font-size:14px;font-weight:500;text-decoration:none;transition:all .3s;cursor:pointer;border:none;letter-spacing:.3px}
+.btn-primary{background:var(--text);color:var(--bg)}.btn-primary:hover{opacity:.85;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border2)}.btn-ghost:hover{border-color:var(--text);transform:translateY(-2px)}
+
+/* AREA BLOCKS */
+.areas{padding:0 clamp(1.5rem,4vw,3rem)}
+.areas-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border)}
+.area{padding:2.5rem 2rem;border-right:1px solid var(--border);cursor:pointer;transition:background .3s;position:relative;background:var(--card)}
+.area:last-child{border-right:none}
+.area:hover{background:var(--card-h)}
+.area::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transition:transform .4s;transform-origin:left}
+.area:hover::before{transform:scaleX(1)}
+.area[data-c="mag"]::before{background:var(--mag)}.area[data-c="sky"]::before{background:var(--sky)}.area[data-c="teal"]::before{background:var(--teal)}
+.area .a-slash{font-family:var(--display);font-size:32px;font-weight:500;letter-spacing:-1px;margin-bottom:.5rem}
+.area .a-label{font-size:11px;letter-spacing:2px;color:var(--text3);font-weight:500;text-transform:uppercase;margin-bottom:.75rem}
+.area .a-desc{font-size:14px;color:var(--text2);line-height:1.6;font-weight:300}
+.area .a-arrow{margin-top:1rem;font-size:13px;color:var(--text3);opacity:0;transition:opacity .3s,transform .3s;transform:translateX(-4px)}
+.area:hover .a-arrow{opacity:1;transform:translateX(0)}
+
+/* CROSS NAV (bottom of subpages) */
+.cross-nav{border-top:1px solid var(--border);padding:0;margin-top:3rem}
+.cross-nav .areas-grid{border-top:none}
+.cross-nav .area{background:var(--card)}
+
+/* SECTION HERO */
+.s-hero{padding:140px clamp(1.5rem,4vw,3rem) 3rem;max-width:880px}
+.s-hero .eyebrow{font-size:12px;letter-spacing:3px;font-weight:600;text-transform:uppercase;margin-bottom:1rem}
+.s-hero h1{font-family:var(--display);font-size:clamp(36px,5vw,56px);letter-spacing:-1.5px;line-height:1.1;margin-bottom:1.25rem}
+.s-hero .intro{font-size:17px;color:var(--text2);line-height:1.7;font-weight:300;max-width:600px}
+
+/* CONTENT */
+.cnt{max-width:880px;padding:0 clamp(1.5rem,4vw,3rem) 0}
+.sub{font-family:var(--display);font-size:24px;letter-spacing:-.5px;margin:3rem 0 1rem;font-weight:500}
+.bt{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:1rem;font-weight:300}
+.divider{height:1px;background:var(--border);margin:3rem 0}
+
+/* SERVICE CARD */
+.svc{border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:1.25rem;background:var(--card);transition:border-color .3s}
+.svc:hover{border-color:var(--border2)}
+.svc-head{padding:1.5rem 1.75rem;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border)}
+.svc-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;color:#fff}
+.svc-title{font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:-.3px}
+.svc-sub{font-size:13px;color:var(--text3);margin-top:2px;font-weight:300}
+.svc-body{padding:1.5rem 1.75rem}
+.svc-row{display:grid;grid-template-columns:1fr 1.6fr .8fr;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--border);font-size:14px}
+.svc-row:last-child{border-bottom:none}
+.svc-n{font-weight:600}.svc-d{color:var(--text2);line-height:1.5;font-weight:300}.svc-o{font-weight:500}
+.svc-meta{font-size:12px;color:var(--text3);padding:1rem 1.75rem;border-top:1px solid var(--border);font-weight:300}
+.approach{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;margin:1.5rem 0;border-radius:12px;overflow:hidden}
+.approach-step{background:var(--bg2);padding:1.25rem .75rem;text-align:center;position:relative}
+.approach-step::after{content:'→';position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:12px;z-index:1}
+.approach-step:last-child::after{display:none}
+.approach-step .num{font-size:11px;color:var(--text3);letter-spacing:1px;margin-bottom:4px}
+.approach-step .name{font-size:13px;font-weight:600;letter-spacing:-.2px}
+.quote{border-left:2px solid;padding:1.25rem 1.5rem;margin:1.5rem 0;font-family:var(--display);font-size:20px;font-style:italic;line-height:1.5;font-weight:400}
+.vals{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin:1.5rem 0;border-radius:12px;overflow:hidden}
+.val{background:var(--bg2);padding:1.5rem;text-align:center}
+.val .vn{font-family:var(--display);font-size:16px;font-weight:500;margin-bottom:4px}
+.val .vd{font-size:12px;color:var(--text3);font-weight:300}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin:1.5rem 0;border-radius:12px;overflow:hidden}
+.kpi{background:var(--bg2);padding:1.75rem;text-align:center}
+.kpi .n{font-family:var(--display);font-size:40px;font-weight:600;line-height:1}
+.kpi .l{font-size:12px;color:var(--text3);margin-top:6px;font-weight:300;line-height:1.4}
+.cmp{display:grid;grid-template-columns:1fr 1fr;border-radius:12px;overflow:hidden;margin:1.5rem 0;border:1px solid var(--border)}
+.cmp-s{padding:2rem}.cmp-s.them{background:var(--bg2)}
+.cmp-l{font-size:11px;letter-spacing:2px;font-weight:600;margin-bottom:.75rem;text-transform:uppercase}
+.cmp-q{font-family:var(--display);font-size:20px;line-height:1.3;margin-bottom:.5rem;letter-spacing:-.3px;font-weight:500}
+.cmp-f{font-size:13px;color:var(--text3);font-weight:300}
+.callout{padding:1.5rem 1.75rem;border-radius:12px;font-size:15px;font-weight:300;line-height:1.6;margin:1.5rem 0;border:1px solid}
+
+/* ABOUT */
+.founder{border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:2rem;background:var(--card)}
+.founder-top{padding:2.5rem;display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap}
+.founder-avatar{width:100px;height:100px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:36px;color:#fff;flex-shrink:0;overflow:hidden}
+.founder-info{flex:1;min-width:240px}
+.founder-name{font-family:var(--display);font-size:32px;letter-spacing:-1px;font-weight:500;margin-bottom:2px}
+.founder-claim{font-size:14px;font-weight:600;margin-top:4px}
+.founder-role{font-size:13px;color:var(--text3);margin-top:4px;font-weight:300}
+.founder-bio{font-size:15px;color:var(--text2);line-height:1.7;margin-top:1rem;font-weight:300}
+.founder-bottom{padding:1.5rem 2.5rem;border-top:1px solid var(--border)}
+.founder-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-size:11px;padding:5px 12px;border-radius:20px;font-weight:500;border:1px solid var(--border);color:var(--text2)}
+
+/* PARTNERS */
+.partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin:1.5rem 0;border-radius:12px;overflow:hidden}
+.partner-slot{background:var(--bg2);padding:2.5rem;text-align:center;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.partner-slot.empty{background:transparent;border:1px dashed var(--border)}
+.partner-slot.empty .p-name{color:var(--text3);font-size:14px;font-family:var(--body)}
+.partner-slot .p-type{font-size:12px;color:var(--text3);font-weight:300}
+
+/* PREFOOTER — on all pages */
+.prefooter{padding:4rem clamp(1.5rem,4vw,3rem);border-top:1px solid var(--border);margin-top:3rem}
+.pf-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.pf-col .pf-logo{font-family:var(--display);font-size:24px;font-weight:500;margin-bottom:.75rem}
+.pf-col .pf-tagline{font-size:14px;color:var(--text2);line-height:1.7;font-weight:300}
+.pf-col h4{font-family:var(--display);font-size:15px;font-weight:500;margin-bottom:.75rem}
+.pf-col a{display:block;font-size:13px;color:var(--text2);text-decoration:none;line-height:2;font-weight:300;cursor:pointer}
+.pf-col a:hover{color:var(--text)}
+.pf-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:.5rem}
+.pf-btns a{display:inline-flex;padding:10px 20px;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:500;color:var(--text);text-decoration:none;transition:all .2s;cursor:pointer;line-height:1}
+.pf-btns a:hover{border-color:var(--text);transform:translateY(-1px)}
+.pf-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:1.5rem;border-top:1px solid var(--border);font-size:11px;color:var(--text3)}
+.pf-bottom .pf-b-logo{font-family:var(--display);font-size:18px;font-weight:500;color:var(--text)}
+.pf-bottom .pf-b-logo .pf-sl{transition:color .3s}
+
+/* SCROLL HINT */
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:3;cursor:pointer;opacity:0;animation:fadeUpCenter 1s 1.5s ease forwards}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,transparent,var(--text3),transparent);animation:scrollPulse 2s ease-in-out infinite;position:relative}
+.scroll-line::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:var(--text3);animation:scrollDot 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:.8;transform:scaleY(1)}}
+@keyframes scrollDot{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal:nth-child(2){transition-delay:.12s}
+.reveal:nth-child(3){transition-delay:.24s}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUpCenter{from{opacity:0;transform:translateX(-50%) translateY(24px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@media(max-width:768px){
+  .nav-right{display:none}.hamburger{display:flex}
+  /* Hero */
+  .hero-title{max-width:100%;font-size:clamp(28px,8vw,48px);min-height:auto;margin-bottom:1.5rem}
+  .hero-sub{font-size:15px}
+  .hero-cta{flex-direction:column;width:100%}
+  .hero-cta .btn{width:100%;justify-content:center}
+  .mouse-glow{display:none}
+  .hero-shapes .shape{opacity:.04}
+  .scroll-hint{bottom:1.5rem}
+  /* Areas */
+  .areas-grid{grid-template-columns:1fr}.area{border-right:none;border-bottom:1px solid var(--border)}.area:last-child{border-bottom:none}
+  .area .a-arrow{opacity:1;transform:translateX(0)}
+  /* Content */
+  .s-hero{padding:100px 1.25rem 2rem}
+  .s-hero h1{font-size:clamp(28px,7vw,40px)}
+  .kpis{grid-template-columns:1fr}.kpi{padding:1.25rem}
+  .vals{grid-template-columns:1fr 1fr}
+  .cmp{grid-template-columns:1fr}
+  .svc-row{grid-template-columns:1fr;gap:.3rem}
+  .approach{grid-template-columns:repeat(3,1fr)}.approach-step:nth-child(3)::after{display:none}
+  .approach-step{padding:1rem .5rem}.approach-step .name{font-size:12px}
+  /* About */
+  .founder-top{flex-direction:column;align-items:center;text-align:center;padding:1.5rem}
+  .founder-bottom{padding:1rem 1.5rem}
+  .founder-tags{justify-content:center}
+  /* Partners */
+  .partner-grid{grid-template-columns:1fr}
+  /* Footer */
+  .pf-grid{grid-template-columns:1fr;gap:1.5rem}
+  .pf-btns{flex-direction:row}
+  .pf-bottom{flex-direction:column;gap:.5rem;text-align:center}
+  /* Cross nav */
+  .cross-nav .areas-grid{grid-template-columns:1fr}
+}
+@media(max-width:380px){
+  .approach{grid-template-columns:repeat(2,1fr)}
+  .approach-step:nth-child(2)::after{display:none}
+  .vals{grid-template-columns:1fr}
+  .pf-btns{flex-direction:column}
+  .pf-btns a{width:100%;justify-content:center;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+<div class="nav-left"><div class="nav-logo" onclick="go('home')">elisa<span class="sl" id="nav-sl" style="color:var(--text3)"> /partner</span></div></div>
+<div class="nav-right">
+  <a href="#" onclick="go('home');return false" data-v="home" id="n-home" class="active">Home</a>
+  <a href="#" onclick="go('marketing');return false" data-v="marketing" id="n-marketing">/marketing</a>
+  <a href="#" onclick="go('impact');return false" data-v="impact" id="n-impact">/impact</a>
+  <a href="#" onclick="go('ai');return false" data-v="ai" id="n-ai">/ai</a>
+  <a href="#" onclick="go('about');return false" data-v="about" id="n-about">Persone</a>
+  <a href="#" onclick="go('partners');return false" data-v="partners" id="n-partners">Partner</a>
+  <button class="theme-btn" onclick="toggleTheme()" aria-label="Cambia tema">
+    <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+  </button>
+</div>
+<div class="hamburger" onclick="toggleMob()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mob-menu" id="mob-menu">
+  <button class="mob-close" onclick="toggleMob()">×</button>
+  <a href="#" onclick="go('home');toggleMob();return false">Home</a>
+  <a href="#" onclick="go('marketing');toggleMob();return false">/marketing</a>
+  <a href="#" onclick="go('impact');toggleMob();return false">/impact</a>
+  <a href="#" onclick="go('ai');toggleMob();return false">/ai</a>
+  <a href="#" onclick="go('about');toggleMob();return false">Persone</a>
+  <a href="#" onclick="go('partners');toggleMob();return false">Partner</a>
+</div>
+
+<!-- ==================== HOME ==================== -->
+<div class="page active" id="p-home">
+<section class="hero" id="hero-section">
+<!-- Animated background layers -->
+<div class="hero-mesh">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<div class="hero-shapes" id="hero-shapes"></div>
+<div class="mouse-glow" id="mouse-glow"></div>
+<div class="hero-grain"></div>
+<!-- Content -->
+<div class="hero-inner">
+  <h1 class="hero-title" id="typed-container"></h1>
+  <p class="hero-sub">Crediamo che <span class="hl">valori</span> e <span class="hl">identità</span> debbano essere tutelati, a volte anche dalle proprie aziende. Puntiamo a chiarire la <span class="hl">visione</span>, creare <span class="hl">consapevolezza</span> e dirigere con <span class="hl">lucidità</span>. Ispirare manager e specialisti è il nostro modo per lasciare un segno.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" onclick="go('about')">Chi siamo</a>
+    <a class="btn btn-ghost" onclick="document.getElementById('home-areas').scrollIntoView({behavior:'smooth'})">Cosa facciamo</a>
+  </div>
+</div>
+<div class="scroll-hint" onclick="document.getElementById('home-areas').scrollIntoView({behavior:'smooth'})">
+  <div class="scroll-line"></div>
+</div>
+</section>
+
+<section class="areas" id="home-areas">
+<div class="areas-grid">
+  <div class="area reveal" data-c="mag" onclick="go('marketing')">
+    <div class="a-slash" style="color:var(--mag)">/marketing</div>
+    <div class="a-label">Marketing Partner</div>
+    <div class="a-desc">Brand strategy, marketing strategy, consulenza operativa e temporary management. Proteggiamo il tuo brand dalle logiche di breve termine.</div>
+    <div class="a-arrow">Scopri →</div>
+  </div>
+  <div class="area reveal" data-c="sky" onclick="go('impact')">
+    <div class="a-slash" style="color:var(--sky)">/impact</div>
+    <div class="a-label">Social Impact by Design</div>
+    <div class="a-desc">SROI, Società Benefit, impatto sociale misurabile. Ripensa il tuo modello integrando il valore sociale nel DNA dell'impresa.</div>
+    <div class="a-arrow">Scopri →</div>
+  </div>
+  <div class="area reveal" data-c="teal" onclick="go('ai')">
+    <div class="a-slash" style="color:var(--teal)">/ai</div>
+    <div class="a-label">Augmented Intelligence</div>
+    <div class="a-desc">Consulenza strategica sull'intelligenza artificiale. Ti aiutiamo a capire dove l'AI genera valore concreto per la tua impresa.</div>
+    <div class="a-arrow">Scopri →</div>
+  </div>
+</div>
+</section>
+
+<div class="prefooter" id="pf-home"></div>
+</div>
+
+<!-- ==================== /MARKETING ==================== -->
+<div class="page" id="p-marketing">
+<div class="s-hero"><div class="eyebrow" style="color:var(--mag)">elisa /marketing</div>
+<h1>Proteggiamo il tuo <span style="color:var(--mag)">brand</span></h1>
+<p class="intro">Le aziende investono quasi tutto in attività sales a discapito di strategie di medio-lungo termine. Noi invertiamo questa logica: partiamo dall'identità, costruiamo la strategia, eseguiamo con metodo e formiamo le tue persone.</p></div>
+<div class="cnt">
+<div class="quote" style="border-color:var(--mag)">To save Brands from their companies.</div>
+<div class="sub">Il metodo</div>
+<p class="bt">Il tuo business è unico, il marketing no. I fondamentali sono trasversali a ogni settore, ma solo ascoltandoti possiamo capire come aiutarti davvero.</p>
+<div class="approach">
+<div class="approach-step"><div class="num">01</div><div class="name">Ascolto</div></div>
+<div class="approach-step"><div class="num">02</div><div class="name">Analisi</div></div>
+<div class="approach-step"><div class="num">03</div><div class="name">Confronto</div></div>
+<div class="approach-step"><div class="num">04</div><div class="name">Strategia</div></div>
+<div class="approach-step"><div class="num">05</div><div class="name">Esecuzione</div></div>
+<div class="approach-step"><div class="num">06</div><div class="name">Training</div></div>
+</div>
+<p class="bt">L'obiettivo finale è sempre renderti autonomo. Non creiamo dipendenza — creiamo competenza.</p>
+<div class="sub">I valori</div>
+<div class="vals">
+<div class="val"><div class="vn">Umanità</div><div class="vd">Prima le persone</div></div>
+<div class="val"><div class="vn">Trasparenza</div><div class="vd">Fiducia, sempre</div></div>
+<div class="val"><div class="vn">Responsabilità</div><div class="vd">Ci mettiamo la faccia</div></div>
+<div class="val"><div class="vn">Presenza</div><div class="vd">Ogni giorno</div></div>
+</div>
+<div class="divider"></div>
+<div class="sub">I servizi</div>
+<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--mag)">1</div><div><div class="svc-title">Brand Strategy</div><div class="svc-sub">Identità, immagine e posizionamento</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">Brand Identity</div><div class="svc-d">Purpose, vision, mission, nome, logo, payoff.</div><div class="svc-o" style="color:var(--mag)">→ Il tuo perché</div></div>
+<div class="svc-row"><div class="svc-n">Brand Image</div><div class="svc-d">Tono di voce, carattere, valori, vantaggi.</div><div class="svc-o" style="color:var(--mag)">→ La tua voce</div></div>
+<div class="svc-row"><div class="svc-n">Brand Positioning</div><div class="svc-d">Posizionamento rispetto a mercato e competitor.</div><div class="svc-o" style="color:var(--mag)">→ La tua posizione</div></div></div>
+<div class="svc-meta">~30 giorni · 2-3 workshop · Manager coinvolti</div></div>
+<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--mag)">2</div><div><div class="svc-title">Marketing Strategy</div><div class="svc-sub">Analisi, pianificazione, obiettivi e metriche</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">Report Zero</div><div class="svc-d">Fotografia di investimenti, risultati, frizioni, valore.</div><div class="svc-o" style="color:var(--mag)">→ Stato dell'arte</div></div>
+<div class="svc-row"><div class="svc-n">Target & KPI</div><div class="svc-d">Target, journey, obiettivi, metriche.</div><div class="svc-o" style="color:var(--mag)">→ Bussola strategica</div></div>
+<div class="svc-row"><div class="svc-n">Piano Operativo</div><div class="svc-d">Touchpoint, piano editoriale, budget, Gantt.</div><div class="svc-o" style="color:var(--mag)">→ Roadmap esecutiva</div></div></div>
+<div class="svc-meta">~45 giorni · 4-5 workshop · Manager coinvolti</div></div>
+<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--mag)">3</div><div><div class="svc-title">Marketing Consulting</div><div class="svc-sub">Affiancamento operativo e formazione</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">Setup & Execution</div><div class="svc-d">Branding, lead generation, UX, customer care, fidelizzazione.</div><div class="svc-o" style="color:var(--mag)">→ Macchina in moto</div></div>
+<div class="svc-row"><div class="svc-n">Scouting Fornitori</div><div class="svc-d">Confronto preventivi, selezione partner.</div><div class="svc-o" style="color:var(--mag)">→ Partner validati</div></div>
+<div class="svc-row"><div class="svc-n">Coaching & Training</div><div class="svc-d">Affiancamento sales e marketing, coaching ai manager.</div><div class="svc-o" style="color:var(--mag)">→ Team formato</div></div></div>
+<div class="svc-meta">12 mesi · 1 sessione/settimana + contatto quotidiano</div></div>
+<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--mag)">4</div><div><div class="svc-title">Temporary Management</div><div class="svc-sub">Responsabilità al centro</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">Gestione completa</div><div class="svc-d">Budget, project management, pricing, business model.</div><div class="svc-o" style="color:var(--mag)">→ Il tuo CMO</div></div>
+<div class="svc-row"><div class="svc-n">Team Building</div><div class="svc-d">Selezione risorse, training on-the-job.</div><div class="svc-o" style="color:var(--mag)">→ Reparto creato</div></div>
+<div class="svc-row"><div class="svc-n">CRM & Offerta</div><div class="svc-d">CRM, definizione offerta prodotti/servizi.</div><div class="svc-o" style="color:var(--mag)">→ Sistema operativo</div></div></div>
+<div class="svc-meta">12 mesi · 2 sessioni/settimana + contatto quotidiano</div></div>
+</div>
+<div class="cross-nav"><div class="areas-grid">
+<div class="area" data-c="sky" onclick="go('impact')"><div class="a-slash" style="color:var(--sky)">/impact</div><div class="a-label">Social Impact by Design</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="teal" onclick="go('ai')"><div class="a-slash" style="color:var(--teal)">/ai</div><div class="a-label">Augmented Intelligence</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="mag" onclick="go('about')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Chi c'è dietro Elisa</div><div class="a-arrow">Scopri →</div></div>
+</div></div>
+<div class="prefooter" data-pf></div>
+</div>
+
+<!-- ==================== /IMPACT ==================== -->
+<div class="page" id="p-impact">
+<div class="s-hero"><div class="eyebrow" style="color:var(--sky)">elisa /impact</div>
+<h1>Impatto sociale <span style="color:var(--sky)">by design</span></h1>
+<p class="intro">Non compliance, non greenwashing. Ti aiutiamo a ripensare il tuo modello integrando l'impatto sociale come leva strategica di crescita.</p></div>
+<div class="cnt">
+<div class="quote" style="border-color:var(--sky)">Il valore che crei si misura nelle persone che raggiungi.</div>
+<div class="kpis">
+<div class="kpi"><div class="n" style="color:var(--sky)">1.500+</div><div class="l">Società Benefit in Italia</div></div>
+<div class="kpi"><div class="n" style="color:var(--sky)">61%</div><div class="l">Gen Z sceglie brand con purpose</div></div>
+<div class="kpi"><div class="n" style="color:var(--sky)">71%</div><div class="l">Welfare aziendale → +soddisfazione</div></div></div>
+<p class="bt">Le banche hanno integrato i fattori ESG nel rischio creditizio. Le grandi imprese chiedono dati ESG ai fornitori. Chi si prepara ora acquisisce un vantaggio competitivo.</p>
+<div class="cmp"><div class="cmp-s them"><div class="cmp-l" style="color:var(--text3)">L'approccio classico</div><div class="cmp-q">"Devo fare il report ESG"</div><div class="cmp-f">Compliance, adempimento, carta</div></div>
+<div class="cmp-s" style="background:color-mix(in srgb,var(--sky) 8%,var(--bg))"><div class="cmp-l" style="color:var(--sky)">Il nostro approccio</div><div class="cmp-q">"Voglio ripensare il mio modello"</div><div class="cmp-f">Cultura, strategia, impatto misurabile</div></div></div>
+<div class="divider"></div><div class="sub">Il percorso</div>
+<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--sky)">1</div><div><div class="svc-title">Impact Awareness</div><div class="svc-sub">Dal profitto al valore condiviso</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">Impact Workshop</div><div class="svc-d">Giornata con il board: impatto sociale, casi studio, esercitazione.</div><div class="svc-o" style="color:var(--sky)">→ Management consapevole</div></div>
+<div class="svc-row"><div class="svc-n">Purpose Discovery</div><div class="svc-d">Far emergere il cambiamento positivo che la tua impresa può generare.</div><div class="svc-o" style="color:var(--sky)">→ Purpose definito</div></div></div></div>
+<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--sky)">2</div><div><div class="svc-title">Impact Strategy</div><div class="svc-sub">Progettare l'impatto nel business</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">Social Impact Assessment</div><div class="svc-d">Mappatura impatti, stakeholder, teoria del cambiamento.</div><div class="svc-o" style="color:var(--sky)">→ Mappa d'impatto</div></div>
+<div class="svc-row"><div class="svc-n">SROI Design</div><div class="svc-d">Campo, outcome, valore, calcolo del rapporto.</div><div class="svc-o" style="color:var(--sky)">→ SROI documentato</div></div>
+<div class="svc-row"><div class="svc-n">Benefit Strategy</div><div class="svc-d">Diventare Società Benefit: finalità, statuto, piano.</div><div class="svc-o" style="color:var(--sky)">→ Roadmap Benefit</div></div></div></div>
+<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--sky)">3</div><div><div class="svc-title">Impact Reporting & Growth</div><div class="svc-sub">Misurare, comunicare, migliorare</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">Relazione d'Impatto</div><div class="svc-d">Relazione annuale Società Benefit, standard internazionali.</div><div class="svc-o" style="color:var(--sky)">→ Report annuale</div></div>
+<div class="svc-row"><div class="svc-n">Impact Coaching</div><div class="svc-d">KPI d'impatto, ottimizzazione, preparazione ESG.</div><div class="svc-o" style="color:var(--sky)">→ Retainer trimestrale</div></div></div></div>
+<div class="callout" style="border-color:var(--sky);color:var(--sky)">Elisa stessa è Società Benefit. Non vendiamo teoria — pratichiamo quello che insegniamo.</div>
+</div>
+<div class="cross-nav"><div class="areas-grid">
+<div class="area" data-c="mag" onclick="go('marketing')"><div class="a-slash" style="color:var(--mag)">/marketing</div><div class="a-label">Marketing Partner</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="teal" onclick="go('ai')"><div class="a-slash" style="color:var(--teal)">/ai</div><div class="a-label">Augmented Intelligence</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="mag" onclick="go('about')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Chi c'è dietro Elisa</div><div class="a-arrow">Scopri →</div></div>
+</div></div>
+<div class="prefooter" data-pf></div>
+</div>
+
+<!-- ==================== /AI ==================== -->
+<div class="page" id="p-ai">
+<div class="s-hero"><div class="eyebrow" style="color:var(--teal)">elisa /ai</div>
+<h1>L'AI che <span style="color:var(--teal)">serve davvero</span></h1>
+<p class="intro">Non ti vendiamo tecnologia. Ti aiutiamo a capire dove l'intelligenza artificiale genera valore concreto, come integrarla e come misurarne l'impatto.</p></div>
+<div class="cnt">
+<div class="quote" style="border-color:var(--teal)">Human intelligence, powered.</div>
+<div class="kpis">
+<div class="kpi"><div class="n" style="color:var(--teal)">68%</div><div class="l">PMI senza AI</div></div>
+<div class="kpi"><div class="n" style="color:var(--teal)">49%</div><div class="l">Manager: carenza competenze</div></div>
+<div class="kpi"><div class="n" style="color:var(--teal)">12%</div><div class="l">Progetti AI riusciti</div></div></div>
+<p class="bt">Il gap non è tecnologico — è strategico. Le imprese sanno che l'AI è importante, ma non sanno da dove partire. Noi partiamo dal tuo business, non dal codice.</p>
+<div class="cmp"><div class="cmp-s them"><div class="cmp-l" style="color:var(--text3)">L'approccio degli altri</div><div class="cmp-q">"Ti implementiamo l'AI"</div><div class="cmp-f">Strumenti, automazioni, chatbot</div></div>
+<div class="cmp-s" style="background:color-mix(in srgb,var(--teal) 8%,var(--bg))"><div class="cmp-l" style="color:var(--teal)">Il nostro approccio</div><div class="cmp-q">"Ti aiutiamo a pensare con l'AI"</div><div class="cmp-f">Strategia, persone, impatto misurabile</div></div></div>
+<div class="divider"></div><div class="sub">Il percorso</div>
+<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--teal)">1</div><div><div class="svc-title">AI Discovery</div><div class="svc-sub">Capire dove l'AI genera valore</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">AI Assessment</div><div class="svc-d">Mappatura processi, pain point, maturità digitale.</div><div class="svc-o" style="color:var(--teal)">→ Report AI Readiness</div></div>
+<div class="svc-row"><div class="svc-n">AI Workshop</div><div class="svc-d">Giornata con il management: demo, casi studio, esercitazioni.</div><div class="svc-o" style="color:var(--teal)">→ Team allineato</div></div></div></div>
+<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--teal)">2</div><div><div class="svc-title">AI Roadmap</div><div class="svc-sub">Piano d'azione con priorità e KPI</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">AI Strategy Design</div><div class="svc-d">Obiettivi, use case, costo-beneficio, piano 6-12 mesi.</div><div class="svc-o" style="color:var(--teal)">→ AI Roadmap</div></div>
+<div class="svc-row"><div class="svc-n">Tool Selection</div><div class="svc-d">Analisi comparativa, scouting fornitori, supervisione PoC.</div><div class="svc-o" style="color:var(--teal)">→ Matrice decisionale</div></div></div></div>
+<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--teal)">3</div><div><div class="svc-title">AI Adoption</div><div class="svc-sub">Formazione e change management</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">Training Program</div><div class="svc-d">Percorsi per ruolo, prompt engineering, governance.</div><div class="svc-o" style="color:var(--teal)">→ Team autonomo</div></div>
+<div class="svc-row"><div class="svc-n">AI Coaching</div><div class="svc-d">Sessioni periodiche, revisione KPI, supporto continuo.</div><div class="svc-o" style="color:var(--teal)">→ Retainer trimestrale</div></div></div></div>
+</div>
+<div class="cross-nav"><div class="areas-grid">
+<div class="area" data-c="mag" onclick="go('marketing')"><div class="a-slash" style="color:var(--mag)">/marketing</div><div class="a-label">Marketing Partner</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="sky" onclick="go('impact')"><div class="a-slash" style="color:var(--sky)">/impact</div><div class="a-label">Social Impact by Design</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="mag" onclick="go('about')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Chi c'è dietro Elisa</div><div class="a-arrow">Scopri →</div></div>
+</div></div>
+<div class="prefooter" data-pf></div>
+</div>
+
+<!-- ==================== PERSONE ==================== -->
+<div class="page" id="p-about">
+<div class="s-hero"><div class="eyebrow" style="color:var(--text3)">Persone</div>
+<h1>Chi c'è dietro <span style="color:var(--teal)">Elisa</span></h1>
+<p class="intro">"Non si tratta mai di solo lavoro. È sempre una questione personale. Poi è lavoro."</p></div>
+<div class="cnt">
+<div class="founder" style="border-color:color-mix(in srgb,var(--teal) 20%,var(--border))">
+<div class="founder-top"><div class="founder-avatar" style="background:var(--teal)">S</div>
+<div class="founder-info"><div class="founder-name">Stefano Storoni</div>
+<div class="founder-claim" style="color:var(--teal)">Il Contadino del Marketing</div>
+<div class="founder-role">Co-founder · Marketing Consultant · Il cuore operativo di Elisa</div>
+<p class="founder-bio">Stefano è chi lavora ogni giorno a fianco dei clienti. È lui che entra in azienda, ascolta, analizza, costruisce strategie e forma le persone. Il suo approccio è radicato nella concretezza, nella pazienza, nel lavoro quotidiano che genera frutti nel tempo.</p>
+</div></div>
+<div class="founder-bottom"><div class="founder-tags">
+<span class="tag" style="border-color:var(--mag);color:var(--mag)">/marketing</span>
+<span class="tag" style="border-color:var(--sky);color:var(--sky)">/impact</span>
+<span class="tag">Brand Strategy</span><span class="tag">Temporary Management</span><span class="tag">SROI</span><span class="tag">Coaching</span>
+</div></div></div>
+<div class="founder">
+<div class="founder-top"><div class="founder-avatar" style="background:var(--bg2)">M</div>
+<div class="founder-info"><div class="founder-name">Matteo Rondina</div>
+<div class="founder-claim" style="color:var(--text3)">Bancario con la testa nel cloud</div>
+<div class="founder-role">Co-founder · Marketing & Retail Banking · BCC Fano</div>
+<p class="founder-bio">Fan dei cerchi che si chiudono, dei percorsi che si aprono, di cose che funzionano. Di giorno vive nel retail banking, di sera costruisce Elisa con Stefano. Autore di SUITS Talks — leadership, strategia e intelligenza emotiva.</p>
+</div></div>
+<div class="founder-bottom"><div class="founder-tags">
+<span class="tag" style="border-color:var(--teal);color:var(--teal)">/ai</span>
+<span class="tag">Digital Strategy</span><span class="tag">SUITS Talks</span><span class="tag">Visione & Sviluppo</span>
+</div></div></div>
+<div class="divider"></div><div class="sub">Elisa S.r.l. Società Benefit</div>
+<p class="bt">Fondata a Fano, Elisa è Società Benefit per convinzione. Ogni progetto tiene conto dell'impatto sulle persone, sulla comunità, sul territorio.</p>
+</div>
+<div class="cross-nav"><div class="areas-grid">
+<div class="area" data-c="mag" onclick="go('marketing')"><div class="a-slash" style="color:var(--mag)">/marketing</div><div class="a-label">Marketing Partner</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="sky" onclick="go('impact')"><div class="a-slash" style="color:var(--sky)">/impact</div><div class="a-label">Social Impact by Design</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="teal" onclick="go('ai')" style="border-right:none"><div class="a-slash" style="color:var(--teal)">/ai</div><div class="a-label">Augmented Intelligence</div><div class="a-arrow">Scopri →</div></div>
+</div></div>
+<div class="prefooter" data-pf></div>
+</div>
+
+<!-- ==================== PARTNER ==================== -->
+<div class="page" id="p-partners">
+<div class="s-hero"><div class="eyebrow" style="color:var(--text3)">Network</div>
+<h1>I nostri <span style="color:var(--teal)">partner</span></h1>
+<p class="intro">Lavoriamo con professionisti e studi che condividono il nostro approccio.</p></div>
+<div class="cnt">
+<p class="bt">Collaboriamo con specialisti per offrire un servizio completo senza compromessi sulla qualità.</p>
+<div class="partner-grid">
+<div class="partner-slot empty"><div class="p-name">+ In arrivo</div><div class="p-type">Studio legale</div></div>
+<div class="partner-slot empty"><div class="p-name">+ In arrivo</div><div class="p-type">Studio grafico</div></div>
+<div class="partner-slot empty"><div class="p-name">+ In arrivo</div><div class="p-type">Web agency</div></div>
+<div class="partner-slot empty"><div class="p-name">+ In arrivo</div><div class="p-type">Commercialista</div></div>
+<div class="partner-slot empty"><div class="p-name">+ In arrivo</div><div class="p-type">Consulente HR</div></div>
+<div class="partner-slot empty"><div class="p-name">+ In arrivo</div><div class="p-type">Formazione</div></div>
+</div>
+<div class="callout" style="border-color:var(--border);color:var(--text3)">Sezione in costruzione.</div>
+</div>
+<div class="cross-nav"><div class="areas-grid">
+<div class="area" data-c="mag" onclick="go('marketing')"><div class="a-slash" style="color:var(--mag)">/marketing</div><div class="a-label">Marketing Partner</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="sky" onclick="go('impact')"><div class="a-slash" style="color:var(--sky)">/impact</div><div class="a-label">Social Impact by Design</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="teal" onclick="go('ai')" style="border-right:none"><div class="a-slash" style="color:var(--teal)">/ai</div><div class="a-label">Augmented Intelligence</div><div class="a-arrow">Scopri →</div></div>
+</div></div>
+<div class="prefooter" data-pf></div>
+</div>
+
+<script>
+/* THEME */
+function toggleTheme(){
+  const d=document.documentElement.classList.toggle('dark');
+  localStorage.setItem('elisa-theme',d?'dark':'light');
+  document.getElementById('icon-sun').style.display=d?'none':'block';
+  document.getElementById('icon-moon').style.display=d?'block':'none';
+}
+(function(){const t=localStorage.getItem('elisa-theme');if(t==='dark'){document.documentElement.classList.add('dark');document.getElementById('icon-sun').style.display='none';document.getElementById('icon-moon').style.display='block'}})();
+
+/* NAV SCROLL */
+window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40)});
+
+/* ===== MOBILE DETECTION ===== */
+const isMobile=window.matchMedia('(max-width:768px)').matches||'ontouchstart' in window;
+
+/* ===== MOUSE GLOW (desktop only) ===== */
+if(!isMobile){
+  const glow=document.getElementById('mouse-glow');
+  const heroEl=document.getElementById('hero-section');
+  heroEl.addEventListener('mousemove',e=>{
+    const r=heroEl.getBoundingClientRect();
+    glow.style.left=(e.clientX-r.left-200)+'px';
+    glow.style.top=(e.clientY-r.top-200)+'px';
+  });
+}
+
+/* ===== FLOATING SHAPES (fewer on mobile) ===== */
+(function(){
+  const container=document.getElementById('hero-shapes');
+  const colors=['var(--teal)','var(--mag)','var(--sky)','var(--text3)'];
+  const initCount=isMobile?3:8;
+  const interval=isMobile?8000:4000;
+  function spawn(){
+    const el=document.createElement('div');
+    el.className='shape';
+    const size=Math.random()*(isMobile?40:60)+(isMobile?10:20);
+    el.style.width=size+'px';
+    el.style.height=size+'px';
+    el.style.left=Math.random()*100+'%';
+    el.style.bottom='-'+size+'px';
+    el.style.borderColor=colors[Math.floor(Math.random()*colors.length)];
+    el.style.animationDuration=(Math.random()*15+15)+'s';
+    el.style.animationDelay=(Math.random()*5)+'s';
+    container.appendChild(el);
+    setTimeout(()=>el.remove(),(parseFloat(el.style.animationDuration)+parseFloat(el.style.animationDelay))*1000);
+  }
+  for(let i=0;i<initCount;i++)spawn();
+  setInterval(spawn,interval);
+})();
+
+/* ===== TYPED HERO with colored words ===== */
+/* format: plain text with [word|color] for colored spans */
+const phrases=[
+  "Nelle [domande|var(--mag)] c'è la risposta.",
+  "[Perché|var(--teal)], come, cosa. In questo ordine.",
+  "Non è mai solo [business|var(--sky)].",
+  "[Identità|var(--mag)] prima di strategia.",
+  "Proteggiamo i [brand|var(--teal)] dalle loro aziende.",
+  "La [visione|var(--sky)] guida ogni azione."
+];
+let pIdx=Math.floor(Math.random()*phrases.length);
+const typedEl=document.getElementById('typed-container');
+const TS=40,ES=20,PAUSE=5000,GAP=350;
+
+function parsePhrase(raw){
+  /* returns array of {text,color} chunks */
+  const chunks=[];let i=0;
+  while(i<raw.length){
+    if(raw[i]==='['){
+      const end=raw.indexOf(']',i);
+      const inner=raw.slice(i+1,end);
+      const [txt,col]=inner.split('|');
+      chunks.push({text:txt,color:col});
+      i=end+1;
+    } else {
+      let j=raw.indexOf('[',i);if(j===-1)j=raw.length;
+      chunks.push({text:raw.slice(i,j),color:null});
+      i=j;
+    }
+  }
+  return chunks;
+}
+function flatText(chunks){return chunks.map(c=>c.text).join('')}
+
+function typePhrase(){
+  const chunks=parsePhrase(phrases[pIdx]);
+  const full=flatText(chunks);
+  let ci=0;
+  function renderAt(n){
+    typedEl.innerHTML='';let rem=n;
+    for(const ch of chunks){
+      if(rem<=0)break;
+      const show=ch.text.slice(0,rem);
+      rem-=show.length;
+      if(ch.color){
+        const s=document.createElement('span');s.className='c';s.style.color=ch.color;s.textContent=show;typedEl.appendChild(s);
+      } else {typedEl.appendChild(document.createTextNode(show))}
+    }
+  }
+  let i=0;
+  function step(){if(i<=full.length){renderAt(i);i++;setTimeout(step,TS)}else{setTimeout(erasePhrase,PAUSE)}}
+  step();
+}
+function erasePhrase(){
+  const chunks=parsePhrase(phrases[pIdx]);
+  const full=flatText(chunks);
+  let n=full.length;
+  function step(){
+    if(n>=0){
+      typedEl.innerHTML='';let rem=n;
+      for(const ch of chunks){
+        if(rem<=0)break;
+        const show=ch.text.slice(0,rem);rem-=show.length;
+        if(ch.color){const s=document.createElement('span');s.className='c';s.style.color=ch.color;s.textContent=show;typedEl.appendChild(s)}
+        else{typedEl.appendChild(document.createTextNode(show))}
+      }
+      n--;setTimeout(step,ES);
+    } else {pIdx=(pIdx+1)%phrases.length;setTimeout(typePhrase,GAP)}
+  }
+  step();
+}
+typePhrase();
+
+/* ===== NAV LOGO: /partner 6s, then quick flash through others ===== */
+const navSlashes=[{t:' /marketing',c:'var(--mag)'},{t:' /impact',c:'var(--sky)'},{t:' /ai',c:'var(--teal)'}];
+let navTimer=null,currentPage='home';
+function setSlash(t,c){const sl=document.getElementById('nav-sl');sl.style.opacity='0';setTimeout(()=>{sl.textContent=t;sl.style.color=c;sl.style.opacity='1'},200)}
+function runNavCycle(){
+  setSlash(' /partner','var(--text3)');
+  navTimer=setTimeout(()=>{
+    let s=0;
+    function flash(){
+      if(s<navSlashes.length){setSlash(navSlashes[s].t,navSlashes[s].c);s++;setTimeout(flash,800)}
+      else{setTimeout(()=>{setSlash(' /partner','var(--text3)');navTimer=setTimeout(runNavCycle,6000)},800)}
+    }
+    flash();
+  },6000);
+}
+function stopNav(){clearTimeout(navTimer)}
+runNavCycle();
+
+/* NAV MAP */
+const slashMap={marketing:{t:' /marketing',c:'var(--mag)'},impact:{t:' /impact',c:'var(--sky)'},ai:{t:' /ai',c:'var(--teal)'},about:{t:' /partner',c:'var(--text3)'},partners:{t:' /partner',c:'var(--text3)'}};
+
+/* ===== PREFOOTER inject ===== */
+const pfHTML=`<div class="pf-grid">
+<div class="pf-col"><div class="pf-logo">elisa <span style="color:var(--text3)">/partner</span></div>
+<p class="pf-tagline">Consulenza strategica e manageriale per persone e aziende che vogliono vivere e lavorare con intelligenza, metodo e impatto.</p></div>
+<div class="pf-col"><h4>Contatti</h4>
+<div class="pf-btns">
+<a onclick="window.location.href='mai'+'lto:'+'info'+'@'+'elisa'+'.marketing'">Scrivici</a>
+<a onclick="window.location.href='te'+'l:+39'+'328'+'1115069'">Chiamaci</a>
+<a href="https://wa.me/393281115069" target="_blank">WhatsApp</a>
+</div></div>
+<div class="pf-col"><h4>Sede Legale</h4>
+<a style="cursor:default">Via Einaudi 24</a>
+<a style="cursor:default">61032 Fano (PU)</a>
+<a style="cursor:default">P.IVA 02628770410</a></div>
+</div>
+<div class="pf-bottom"><div class="pf-b-logo">elisa<span class="pf-sl" style="color:var(--text3)"> /partner</span></div><div>© 2026 Elisa S.r.l. Società Benefit</div></div>`;
+document.querySelectorAll('.prefooter').forEach(el=>el.innerHTML=pfHTML);
+
+/* ===== PAGE NAV ===== */
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-right a').forEach(a=>a.classList.remove('active'));
+  const pg=document.getElementById('p-'+id);if(pg)pg.classList.add('active');
+  const nv=document.getElementById('n-'+id);if(nv)nv.classList.add('active');
+  currentPage=id;
+  if(id==='home'){stopNav();runNavCycle()}
+  else{stopNav();const m=slashMap[id];if(m)setSlash(m.t,m.c)}
+  /* Update footer logo slash */
+  const fm=slashMap[id]||{t:' /partner',c:'var(--text3)'};
+  document.querySelectorAll('.pf-sl').forEach(s=>{s.textContent=fm.t;s.style.color=fm.c});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleMob(){document.getElementById('mob-menu').classList.toggle('open')}
+
+/* ===== SCROLL REVEAL ===== */
+const revealObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}});
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+</script>
+</body>
+</html>
