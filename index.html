@@ -93,11 +93,11 @@ nav.scrolled{background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-fi
 .mob-theme{margin-top:1rem;padding:10px 24px;border:1px solid var(--border);border-radius:8px;background:none;font-family:var(--body);font-size:13px;color:var(--text2);cursor:pointer;transition:border-color .2s}
 .mob-theme:hover{border-color:var(--text)}
 /* HOME ICON */
-.nav-home{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:6px;cursor:pointer;transition:background .2s;text-decoration:none;padding:0}
+.nav-home{display:flex;align-items:center;justify-content:center;padding:7px 14px;border-radius:6px;cursor:pointer;transition:background .2s;text-decoration:none}
 .nav-home:hover{background:color-mix(in srgb,var(--text) 6%,transparent)}
 .nav-home.active{background:var(--text)}
 .nav-home.active svg{stroke:var(--bg)}
-.nav-home svg{width:20px;height:20px;stroke:var(--text3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.nav-home svg{width:18px;height:18px;stroke:var(--text);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
 @media(prefers-reduced-motion:reduce){.orb,.shape,.scroll-line,.scroll-line::after{animation:none!important}.reveal{transition:none!important;opacity:1!important;transform:none!important}}
 
 /* HERO */
@@ -221,20 +221,22 @@ html.dark .hero-shapes .shape{opacity:.06}
 .callout{padding:2rem 2.25rem;border-radius:14px;font-family:var(--display);font-size:clamp(18px,2.5vw,22px);font-weight:400;line-height:1.5;margin:2rem 0;border:1px solid;letter-spacing:-.3px}
 
 /* ABOUT */
+.cnt-wide{max-width:1200px;padding:0 clamp(1.5rem,4vw,3rem) 0}
 .founders-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
 .founder{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--card)}
-.founder-top{padding:2rem;display:flex;gap:1.5rem;align-items:flex-start}
-.founder-avatar{width:90px;height:90px;border-radius:50%;flex-shrink:0;overflow:hidden}
+.founder-top{padding:2.5rem;display:flex;gap:2rem;align-items:flex-start}
+.founder-avatar{width:110px;height:110px;border-radius:50%;flex-shrink:0;overflow:hidden}
+.founder-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .founder-info{flex:1}
-.founder-name{font-family:var(--display);font-size:24px;letter-spacing:-1px;font-weight:500;margin-bottom:2px}
-.founder-claim{font-size:14px;font-weight:600;margin-top:4px}
-.founder-role{font-size:13px;color:var(--text3);margin-top:4px;font-weight:300}
-.founder-bio{font-size:14px;color:var(--text2);line-height:1.7;margin-top:1rem;font-weight:300}
-.founder-bottom{padding:1.25rem 2rem;border-top:1px solid var(--border)}
+.founder-name{font-family:var(--display);font-size:28px;letter-spacing:-1px;font-weight:500;margin-bottom:2px}
+.founder-claim{font-size:15px;font-weight:600;margin-top:4px}
+.founder-role{font-size:14px;color:var(--text3);margin-top:4px;font-weight:300}
+.founder-bio{font-size:15px;color:var(--text2);line-height:1.7;margin-top:1rem;font-weight:300}
+.founder-bottom{padding:1.25rem 2.5rem;border-top:1px solid var(--border)}
 .founder-tags{display:flex;gap:8px;flex-wrap:wrap}
 .tag{font-size:11px;padding:5px 12px;border-radius:20px;font-weight:500;border:1px solid var(--border);color:var(--text2)}
 /* TESTIMONIALS */
-.testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0}
+.testi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1.5rem 0}
 .testi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;transition:border-color .3s}
 .testi:hover{border-color:var(--border2)}
 .testi-text{font-size:14px;color:var(--text2);line-height:1.7;font-style:italic;font-weight:300;min-height:60px}
@@ -278,6 +280,9 @@ html.dark .hero-shapes .shape{opacity:.06}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeUpCenter{from{opacity:0;transform:translateX(-50%) translateY(24px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@media(max-width:1024px){
+  .testi-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:768px){
   .nav-right{display:none}.hamburger{display:flex}
   /* Hero */
@@ -569,7 +574,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="s-hero"><div class="eyebrow" style="color:var(--text3)">Persone</div>
 <h1>Abbiamo sposato <span style="color:var(--teal)">Elisa</span></h1>
 <p class="intro">"Non si tratta mai di solo lavoro. È sempre una questione personale. Poi è lavoro."</p></div>
-<div class="cnt">
+<div class="cnt-wide">
 
 <div class="founders-grid">
 <div class="founder" style="border-color:color-mix(in srgb,var(--teal) 20%,var(--border))">
@@ -861,7 +866,7 @@ document.querySelectorAll('.prefooter').forEach(el=>el.innerHTML=pfHTML);
 
 /* ===== PAGE NAV with hash routing ===== */
 function go(id, pushHash){
-  if(pushHash!==false) history.pushState(null,null,id==='home'?'#':'#'+id);
+  if(pushHash!==false) try{history.pushState(null,null,id==='home'?'#':'#'+id)}catch(e){}
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-right a').forEach(a=>a.classList.remove('active'));
   const pg=document.getElementById('p-'+id);if(pg)pg.classList.add('active');

@@ -1,5 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#1a1a17"/>
-  <text x="256" y="280" text-anchor="middle" font-family="Georgia, serif" font-size="220" font-weight="500" fill="#f5f4f0" letter-spacing="-8">e</text>
-  <text x="256" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="100" font-weight="500" fill="#1D9E75" letter-spacing="-2">/</text>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0efeb"/>
+      <stop offset="30%" stop-color="#ebe9e3"/>
+      <stop offset="60%" stop-color="#efeee9"/>
+      <stop offset="100%" stop-color="#edf2ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <text x="256" y="320" text-anchor="middle" font-family="Georgia,serif" font-size="340" font-weight="600" fill="#1a1a17" letter-spacing="-8">e</text>
+  <text x="305" y="430" text-anchor="middle" font-family="Georgia,serif" font-size="130" font-weight="500" fill="#1D9E75">/</text>
 </svg>
