@@ -5,6 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>elisa — partner per crescere</title>
 <meta name="description" content="Consulenza strategica e manageriale per persone e aziende.">
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
+<link rel="apple-touch-icon" href="img/favicon-512.png">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="elisa /partner — consulenza strategica">
+<meta property="og:description" content="Consulenza strategica e manageriale per persone e organizzazioni che vogliono vivere e lavorare con intelligenza, metodo e impatto.">
+<meta property="og:image" content="https://elisa.marketing/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://elisa.marketing">
+<meta property="og:site_name" content="elisa /partner">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="elisa /partner — consulenza strategica">
+<meta name="twitter:description" content="Consulenza strategica e manageriale per persone e organizzazioni.">
+<meta name="twitter:image" content="https://elisa.marketing/img/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <style>
@@ -55,13 +73,31 @@ nav.scrolled{background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-fi
 .theme-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-left:10px;transition:border-color .2s;color:var(--text2)}
 .theme-btn:hover{border-color:var(--border2)}
 .theme-btn svg{width:16px;height:16px}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
-.hamburger span{width:22px;height:1.5px;background:var(--text);transition:all .3s}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;position:relative;width:40px;height:40px;justify-content:center;align-items:center}
+.hamburger span{width:20px;height:1.5px;background:var(--text);transition:all .3s;display:block}
 .mob-menu{display:none;position:fixed;inset:0;z-index:99;background:color-mix(in srgb,var(--bg) 97%,transparent);backdrop-filter:blur(30px);flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
-.mob-menu.open{display:flex}
-.mob-menu a{font-family:var(--display);font-size:28px;color:var(--text);text-decoration:none;opacity:.5;transition:opacity .2s}
-.mob-menu a:hover{opacity:1}
-.mob-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border:none;background:none;cursor:pointer;color:var(--text);font-size:28px;display:flex;align-items:center;justify-content:center}
+.mob-menu.open{display:flex;animation:menuIn .35s ease}
+.mob-menu a{font-family:var(--display);font-size:28px;color:var(--text);text-decoration:none;opacity:0;animation:menuItemIn .4s ease forwards}
+.mob-menu.open a:nth-child(2){animation-delay:.05s}
+.mob-menu.open a:nth-child(3){animation-delay:.1s}
+.mob-menu.open a:nth-child(4){animation-delay:.15s}
+.mob-menu.open a:nth-child(5){animation-delay:.2s}
+.mob-menu.open a:nth-child(6){animation-delay:.25s}
+.mob-menu a:hover,.mob-menu a.active{opacity:1}
+@keyframes menuIn{from{opacity:0}to{opacity:1}}
+@keyframes menuItemIn{from{opacity:0;transform:translateY(12px)}to{opacity:.5;transform:translateY(0)}}
+.mob-close{position:absolute;top:16px;right:clamp(1.5rem,4vw,3rem);width:40px;height:40px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mob-close span{position:absolute;width:20px;height:1.5px;background:var(--text)}
+.mob-close span:first-child{transform:rotate(45deg)}
+.mob-close span:last-child{transform:rotate(-45deg)}
+.mob-theme{margin-top:1rem;padding:10px 24px;border:1px solid var(--border);border-radius:8px;background:none;font-family:var(--body);font-size:13px;color:var(--text2);cursor:pointer;transition:border-color .2s}
+.mob-theme:hover{border-color:var(--text)}
+/* HOME ICON */
+.nav-home{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:6px;cursor:pointer;transition:background .2s;text-decoration:none;padding:0}
+.nav-home:hover{background:color-mix(in srgb,var(--text) 6%,transparent)}
+.nav-home.active{background:var(--text)}
+.nav-home.active svg{stroke:var(--bg)}
+.nav-home svg{width:20px;height:20px;stroke:var(--text3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
 @media(prefers-reduced-motion:reduce){.orb,.shape,.scroll-line,.scroll-line::after{animation:none!important}.reveal{transition:none!important;opacity:1!important;transform:none!important}}
 
 /* HERO */
@@ -168,7 +204,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 .approach-step:last-child::after{display:none}
 .approach-step .num{font-size:11px;color:var(--text3);letter-spacing:1px;margin-bottom:4px}
 .approach-step .name{font-size:13px;font-weight:600;letter-spacing:-.2px}
-.quote{border-left:2px solid;padding:1.25rem 1.5rem;margin:1.5rem 0;font-family:var(--display);font-size:20px;font-style:italic;line-height:1.5;font-weight:400}
+.quote{border-left:3px solid;padding:1.5rem 2rem;margin:2rem 0;font-family:var(--display);font-size:clamp(28px,4vw,40px);font-style:italic;line-height:1.3;font-weight:400;letter-spacing:-.5px}
 .vals{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin:1.5rem 0;border-radius:12px;overflow:hidden}
 .val{background:var(--bg2);padding:1.5rem;text-align:center}
 .val .vn{font-family:var(--display);font-size:16px;font-weight:500;margin-bottom:4px}
@@ -182,20 +218,29 @@ html.dark .hero-shapes .shape{opacity:.06}
 .cmp-l{font-size:11px;letter-spacing:2px;font-weight:600;margin-bottom:.75rem;text-transform:uppercase}
 .cmp-q{font-family:var(--display);font-size:20px;line-height:1.3;margin-bottom:.5rem;letter-spacing:-.3px;font-weight:500}
 .cmp-f{font-size:13px;color:var(--text3);font-weight:300}
-.callout{padding:1.5rem 1.75rem;border-radius:12px;font-size:15px;font-weight:300;line-height:1.6;margin:1.5rem 0;border:1px solid}
+.callout{padding:2rem 2.25rem;border-radius:14px;font-family:var(--display);font-size:clamp(18px,2.5vw,22px);font-weight:400;line-height:1.5;margin:2rem 0;border:1px solid;letter-spacing:-.3px}
 
 /* ABOUT */
-.founder{border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:2rem;background:var(--card)}
-.founder-top{padding:2.5rem;display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap}
-.founder-avatar{width:100px;height:100px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:36px;color:#fff;flex-shrink:0;overflow:hidden}
-.founder-info{flex:1;min-width:240px}
-.founder-name{font-family:var(--display);font-size:32px;letter-spacing:-1px;font-weight:500;margin-bottom:2px}
+.founders-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+.founder{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--card)}
+.founder-top{padding:2rem;display:flex;gap:1.5rem;align-items:flex-start}
+.founder-avatar{width:90px;height:90px;border-radius:50%;flex-shrink:0;overflow:hidden}
+.founder-info{flex:1}
+.founder-name{font-family:var(--display);font-size:24px;letter-spacing:-1px;font-weight:500;margin-bottom:2px}
 .founder-claim{font-size:14px;font-weight:600;margin-top:4px}
 .founder-role{font-size:13px;color:var(--text3);margin-top:4px;font-weight:300}
-.founder-bio{font-size:15px;color:var(--text2);line-height:1.7;margin-top:1rem;font-weight:300}
-.founder-bottom{padding:1.5rem 2.5rem;border-top:1px solid var(--border)}
+.founder-bio{font-size:14px;color:var(--text2);line-height:1.7;margin-top:1rem;font-weight:300}
+.founder-bottom{padding:1.25rem 2rem;border-top:1px solid var(--border)}
 .founder-tags{display:flex;gap:8px;flex-wrap:wrap}
 .tag{font-size:11px;padding:5px 12px;border-radius:20px;font-weight:500;border:1px solid var(--border);color:var(--text2)}
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0}
+.testi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;transition:border-color .3s}
+.testi:hover{border-color:var(--border2)}
+.testi-text{font-size:14px;color:var(--text2);line-height:1.7;font-style:italic;font-weight:300;min-height:60px}
+.testi-author{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.testi-name{font-weight:600;font-size:14px}
+.testi-co{font-size:12px;color:var(--text3);font-weight:300;margin-top:2px}
 
 /* PARTNERS */
 .partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin:1.5rem 0;border-radius:12px;overflow:hidden}
@@ -256,9 +301,11 @@ html.dark .hero-shapes .shape{opacity:.06}
   .approach{grid-template-columns:repeat(3,1fr)}.approach-step:nth-child(3)::after{display:none}
   .approach-step{padding:1rem .5rem}.approach-step .name{font-size:12px}
   /* About */
+  .founders-grid{grid-template-columns:1fr}
   .founder-top{flex-direction:column;align-items:center;text-align:center;padding:1.5rem}
   .founder-bottom{padding:1rem 1.5rem}
   .founder-tags{justify-content:center}
+  .testi-grid{grid-template-columns:1fr}
   /* Partners */
   .partner-grid{grid-template-columns:1fr}
   /* Footer */
@@ -282,12 +329,11 @@ html.dark .hero-shapes .shape{opacity:.06}
 <nav id="main-nav">
 <div class="nav-left"><div class="nav-logo" onclick="go('home')">elisa<span class="sl" id="nav-sl" style="color:var(--text3)"> /partner</span></div></div>
 <div class="nav-right">
-  <a href="#" onclick="go('home');return false" data-v="home" id="n-home" class="active">Home</a>
+  <a href="#" class="nav-home active" onclick="go('home');return false" data-v="home" id="n-home"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
   <a href="#" onclick="go('marketing');return false" data-v="marketing" id="n-marketing">/marketing</a>
   <a href="#" onclick="go('impact');return false" data-v="impact" id="n-impact">/impact</a>
   <a href="#" onclick="go('ai');return false" data-v="ai" id="n-ai">/ai</a>
   <a href="#" onclick="go('about');return false" data-v="about" id="n-about">Persone</a>
-  <a href="#" onclick="go('partners');return false" data-v="partners" id="n-partners">Partner</a>
   <button class="theme-btn" onclick="toggleTheme()" aria-label="Cambia tema">
     <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
@@ -296,13 +342,13 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="hamburger" onclick="toggleMob()"><span></span><span></span><span></span></div>
 </nav>
 <div class="mob-menu" id="mob-menu">
-  <button class="mob-close" onclick="toggleMob()">×</button>
+  <button class="mob-close" onclick="toggleMob()"><span></span><span></span></button>
   <a href="#" onclick="go('home');toggleMob();return false">Home</a>
   <a href="#" onclick="go('marketing');toggleMob();return false">/marketing</a>
   <a href="#" onclick="go('impact');toggleMob();return false">/impact</a>
   <a href="#" onclick="go('ai');toggleMob();return false">/ai</a>
   <a href="#" onclick="go('about');toggleMob();return false">Persone</a>
-  <a href="#" onclick="go('partners');toggleMob();return false">Partner</a>
+  <button class="mob-theme" onclick="toggleTheme()">Tema chiaro / scuro</button>
 </div>
 
 <!-- ==================== HOME ==================== -->
@@ -320,7 +366,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 <!-- Content -->
 <div class="hero-inner">
   <h1 class="hero-title" id="typed-container"></h1>
-  <p class="hero-sub">Crediamo che <span class="hl">valori</span> e <span class="hl">identità</span> debbano essere tutelati, a volte anche dalle proprie aziende. Puntiamo a chiarire la <span class="hl">visione</span>, creare <span class="hl">consapevolezza</span> e dirigere con <span class="hl">lucidità</span>. Ispirare manager e specialisti è il nostro modo per lasciare un segno.</p>
+  <p class="hero-sub">Crediamo che <span class="hl">purpose</span> e <span class="hl">identità</span> di brand debbano essere protetti, a volte anche dalle loro stesse organizzazioni. Puntiamo a chiarire la <span class="hl">visione</span>, creare <span class="hl">consapevolezza</span> e dirigere con <span class="hl">lucidità</span>. Ispirare manager e specialisti è il nostro modo per lasciare un segno nella vita delle persone.</p>
   <div class="hero-cta">
     <a class="btn btn-primary" onclick="document.getElementById('home-areas').scrollIntoView({behavior:'smooth'})">Competenze</a>
     <a class="btn btn-ghost" onclick="go('about')">Persone</a>
@@ -438,7 +484,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="cross-nav"><div class="areas-grid">
 <div class="area" data-c="sky" onclick="go('impact')"><div class="a-slash" style="color:var(--sky)">/impact</div><div class="a-label">Social Impact by Design</div><div class="a-arrow">Scopri →</div></div>
 <div class="area" data-c="teal" onclick="go('ai')"><div class="a-slash" style="color:var(--teal)">/ai</div><div class="a-label">Augmented Intelligence</div><div class="a-arrow">Scopri →</div></div>
-<div class="area" data-c="mag" onclick="go('about')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Chi c'è dietro Elisa</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="mag" onclick="go('about')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Abbiamo sposato Elisa</div><div class="a-arrow">Scopri →</div></div>
 </div></div>
 <div class="prefooter" data-pf></div>
 </div>
@@ -447,7 +493,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="page" id="p-impact">
 <div class="s-hero"><div class="eyebrow" style="color:var(--sky)">elisa /impact</div>
 <h1>Impatto sociale <span style="color:var(--sky)">by design</span></h1>
-<p class="intro">Non compliance, non greenwashing. Ti aiutiamo a ripensare il tuo modello integrando l'impatto sociale come leva strategica di crescita.</p></div>
+<p class="intro">Ripensa il tuo modello integrando l'impatto sociale come leva strategica di crescita.</p></div>
 <div class="cnt">
 <div class="quote" style="border-color:var(--sky)">Il valore che crei si misura nelle persone che raggiungi.</div>
 <div class="kpis">
@@ -471,12 +517,12 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="svc-head"><div><div class="svc-title">Impact reporting & growth</div><div class="svc-sub">Misurare, comunicare, migliorare</div></div></div>
 <div class="svc-body"><div class="svc-row"><div class="svc-n">Relazione d'impatto</div><div class="svc-d">Relazione annuale Società Benefit, standard internazionali.</div><div class="svc-o" style="color:var(--sky)">→ Report annuale</div></div>
 <div class="svc-row"><div class="svc-n">Impact coaching</div><div class="svc-d">KPI d'impatto, ottimizzazione, preparazione ESG.</div><div class="svc-o" style="color:var(--sky)">→ Retainer trimestrale</div></div></div></div>
-<div class="callout" style="border-color:var(--sky);color:var(--sky)">Elisa stessa è Società Benefit. Non vendiamo teoria — pratichiamo quello che insegniamo.</div>
+<div class="callout" style="border-color:var(--sky);color:var(--sky)">Elisa stessa è Società Benefit. Pratichiamo quello che predichiamo.</div>
 </div>
 <div class="cross-nav"><div class="areas-grid">
 <div class="area" data-c="mag" onclick="go('marketing')"><div class="a-slash" style="color:var(--mag)">/marketing</div><div class="a-label">Marketing Partner</div><div class="a-arrow">Scopri →</div></div>
 <div class="area" data-c="teal" onclick="go('ai')"><div class="a-slash" style="color:var(--teal)">/ai</div><div class="a-label">Augmented Intelligence</div><div class="a-arrow">Scopri →</div></div>
-<div class="area" data-c="mag" onclick="go('about')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Chi c'è dietro Elisa</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="mag" onclick="go('about')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Abbiamo sposato Elisa</div><div class="a-arrow">Scopri →</div></div>
 </div></div>
 <div class="prefooter" data-pf></div>
 </div>
@@ -485,16 +531,16 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="page" id="p-ai">
 <div class="s-hero"><div class="eyebrow" style="color:var(--teal)">elisa /ai</div>
 <h1>L'AI che <span style="color:var(--teal)">serve davvero</span></h1>
-<p class="intro">Non ti vendiamo tecnologia. Ti aiutiamo a capire dove l'intelligenza artificiale genera valore concreto, come integrarla e come misurarne l'impatto.</p></div>
+<p class="intro">Scopri insieme a noi dove l'intelligenza artificiale genera valore concreto per te, come integrarla e come misurarne l'impatto reale.</p></div>
 <div class="cnt">
 <div class="quote" style="border-color:var(--teal)">Human intelligence, powered.</div>
 <div class="kpis">
 <div class="kpi"><div class="n" style="color:var(--teal)">68%</div><div class="l">PMI senza AI</div></div>
 <div class="kpi"><div class="n" style="color:var(--teal)">49%</div><div class="l">Manager: carenza competenze</div></div>
 <div class="kpi"><div class="n" style="color:var(--teal)">12%</div><div class="l">Progetti AI riusciti</div></div></div>
-<p class="bt">Il gap non è tecnologico — è strategico. Le imprese sanno che l'AI è importante, ma non sanno da dove partire. Noi partiamo dal tuo business, non dal codice.</p>
-<div class="cmp"><div class="cmp-s them"><div class="cmp-l" style="color:var(--text3)">L'approccio degli altri</div><div class="cmp-q">"Ti implementiamo l'AI"</div><div class="cmp-f">Strumenti, automazioni, chatbot</div></div>
-<div class="cmp-s" style="background:color-mix(in srgb,var(--teal) 8%,var(--bg))"><div class="cmp-l" style="color:var(--teal)">Il nostro approccio</div><div class="cmp-q">"Ti aiutiamo a pensare con l'AI"</div><div class="cmp-f">Strategia, persone, impatto misurabile</div></div></div>
+<p class="bt">Il gap è strategico. Le organizzazioni sanno che l'AI è importante, ma non sanno da dove partire. Noi iniziamo dal tuo business.</p>
+<div class="cmp"><div class="cmp-s them"><div class="cmp-l" style="color:var(--text3)">L'approccio degli altri</div><div class="cmp-q">"Implementiamo l'AI"</div><div class="cmp-f">Strumenti, automazioni, chatbot</div></div>
+<div class="cmp-s" style="background:color-mix(in srgb,var(--teal) 8%,var(--bg))"><div class="cmp-l" style="color:var(--teal)">Il nostro approccio</div><div class="cmp-q">"Pensiamo con l'AI"</div><div class="cmp-f">Strategia, persone, impatto misurabile</div></div></div>
 <div class="divider"></div><div class="sub">Il percorso</div>
 <div class="svc svc-accent" style="border-left-color:var(--teal)">
 <div class="svc-head"><div><div class="svc-title">AI discovery</div><div class="svc-sub">Capire dove l'AI genera valore</div></div></div>
@@ -513,7 +559,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="cross-nav"><div class="areas-grid">
 <div class="area" data-c="mag" onclick="go('marketing')"><div class="a-slash" style="color:var(--mag)">/marketing</div><div class="a-label">Marketing Partner</div><div class="a-arrow">Scopri →</div></div>
 <div class="area" data-c="sky" onclick="go('impact')"><div class="a-slash" style="color:var(--sky)">/impact</div><div class="a-label">Social Impact by Design</div><div class="a-arrow">Scopri →</div></div>
-<div class="area" data-c="mag" onclick="go('about')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Chi c'è dietro Elisa</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="mag" onclick="go('about')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Abbiamo sposato Elisa</div><div class="a-arrow">Scopri →</div></div>
 </div></div>
 <div class="prefooter" data-pf></div>
 </div>
@@ -521,18 +567,19 @@ html.dark .hero-shapes .shape{opacity:.06}
 <!-- ==================== PERSONE ==================== -->
 <div class="page" id="p-about">
 <div class="s-hero"><div class="eyebrow" style="color:var(--text3)">Persone</div>
-<h1>Chi c'è dietro <span style="color:var(--teal)">Elisa</span></h1>
+<h1>Abbiamo sposato <span style="color:var(--teal)">Elisa</span></h1>
 <p class="intro">"Non si tratta mai di solo lavoro. È sempre una questione personale. Poi è lavoro."</p></div>
 <div class="cnt">
 
+<div class="founders-grid">
 <div class="founder" style="border-color:color-mix(in srgb,var(--teal) 20%,var(--border))">
 <div class="founder-top">
-<div class="founder-avatar" style="background:none"><img src="stefano.png" alt="Stefano Storoni" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
+<div class="founder-avatar" style="background:none"><img src="img/stefano.png" alt="Stefano Storoni" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
 <div class="founder-info">
 <div class="founder-name">Stefano Storoni</div>
 <div class="founder-claim" style="color:var(--teal)">Contadino del Marketing</div>
-<div class="founder-role">Co-founder · Marketing Strategy & Consultant · Viking</div>
-<p class="founder-bio">Stefano affianca ogni giorno le persone in azienda. Entra, ascolta, analizza, forma, costruisce strategie. Lucido come pochi, chirurgico con le domande. Concreto e paziente nel lavoro quotidiano che genera frutti nel tempo.</p>
+<div class="founder-role">Marketing Consultant</div>
+<p class="founder-bio">Il mio lavoro non è spiegarvi come si fa, ma farlo insieme a voi. Entro nella vostra quotidianità per osservare, formare e progettare. Mi dicono che sono chirurgico nel porre le domande, ma lo faccio sempre con il massimo rispetto per il valore che avete già creato. La mia è una presenza costante e critica: seminiamo oggi, con lucidità e pazienza, per raccogliere risultati concreti e duraturi nel tempo.</p>
 <a href="https://www.linkedin.com/in/stefanostoroni/" target="_blank" style="display:inline-block;margin-top:.75rem;font-size:13px;color:var(--teal);text-decoration:none;font-weight:500">LinkedIn →</a>
 </div></div>
 <div class="founder-bottom"><div class="founder-tags">
@@ -544,11 +591,11 @@ html.dark .hero-shapes .shape{opacity:.06}
 
 <div class="founder">
 <div class="founder-top">
-<div class="founder-avatar" style="background:none"><img src="matteo.png" alt="Matteo Rondina" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
+<div class="founder-avatar" style="background:none"><img src="img/matteo.png" alt="Matteo Rondina" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
 <div class="founder-info">
 <div class="founder-name">Matteo Rondina</div>
 <div class="founder-claim" style="color:var(--text2)">Costruttore di ponti</div>
-<div class="founder-role">Co-founder · Business & Finance · Mad Man</div>
+<div class="founder-role">Business & Finance</div>
 <p class="founder-bio">Matteo abbraccia i valori di Stefano e lo affianca nel tramutare visione in strategia e business. Manager nel Banking, nerd, visionario e iper attivo, cerca di gestire senza successo il suo fuoco interiore, con cui ogni tanto si scotta.</p>
 <a href="https://www.linkedin.com/in/matteorondina/" target="_blank" style="display:inline-block;margin-top:.75rem;font-size:13px;color:var(--text2);text-decoration:none;font-weight:500">LinkedIn →</a>
 </div></div>
@@ -559,10 +606,34 @@ html.dark .hero-shapes .shape{opacity:.06}
 <span class="tag">Vision</span>
 <span class="tag">Network</span>
 </div></div></div>
+</div>
 
 <div class="divider"></div>
 <div class="sub">Elisa S.r.l. Società Benefit</div>
 <p class="bt">Società Benefit per convinzione e scelta. Scegliamo clienti, progetti e partners tenendo conto dell'impatto sulle persone, sulla comunità, sul territorio e sul futuro. Il nostro quotidiano, non può essere a somma zero.</p>
+
+<div class="divider"></div>
+<div class="sub">Abbiamo incontrato Elisa</div>
+
+<div class="testi-grid">
+<div class="testi">
+<div class="testi-text">Referenza in arrivo.</div>
+<div class="testi-author"><div class="testi-name">Juri Franzosi</div><div class="testi-co">BuildVision / L22</div></div>
+</div>
+<div class="testi">
+<div class="testi-text">Referenza in arrivo.</div>
+<div class="testi-author"><div class="testi-name">Davide Olivi</div><div class="testi-co">Moowe</div></div>
+</div>
+<div class="testi">
+<div class="testi-text">Referenza in arrivo.</div>
+<div class="testi-author"><div class="testi-name">Luigi Selva Verzica</div><div class="testi-co">SVS Lex</div></div>
+</div>
+<div class="testi">
+<div class="testi-text">Referenza in arrivo.</div>
+<div class="testi-author"><div class="testi-name">Enrico Marconi</div><div class="testi-co">Studio Enrico Marconi</div></div>
+</div>
+</div>
+
 </div>
 <div class="cross-nav"><div class="areas-grid">
 <div class="area" data-c="mag" onclick="go('marketing')"><div class="a-slash" style="color:var(--mag)">/marketing</div><div class="a-label">Marketing Partner</div><div class="a-arrow">Scopri →</div></div>
@@ -594,6 +665,34 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="area" data-c="sky" onclick="go('impact')"><div class="a-slash" style="color:var(--sky)">/impact</div><div class="a-label">Social Impact by Design</div><div class="a-arrow">Scopri →</div></div>
 <div class="area" data-c="teal" onclick="go('ai')" style="border-right:none"><div class="a-slash" style="color:var(--teal)">/ai</div><div class="a-label">Augmented Intelligence</div><div class="a-arrow">Scopri →</div></div>
 </div></div>
+<div class="prefooter" data-pf></div>
+</div>
+
+<!-- ==================== COOKIE POLICY ==================== -->
+<div class="page" id="p-cookie">
+<div class="s-hero"><div class="eyebrow" style="color:var(--text3)">Legal</div>
+<h1>Cookie <span style="color:var(--text3)">policy</span></h1></div>
+<div class="cnt">
+
+<div class="sub">Cosa sono i cookie</div>
+<p class="bt">I cookie sono piccoli file di testo che i siti web salvano sul tuo dispositivo durante la navigazione. Servono a migliorare l'esperienza utente, ricordare preferenze e raccogliere informazioni anonime sull'utilizzo del sito.</p>
+
+<div class="sub">Cookie che utilizziamo</div>
+<p class="bt"><strong>Cookie tecnici (necessari)</strong> — Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento. In particolare: il salvataggio della preferenza tema chiaro/scuro (localStorage). Non utilizziamo cookie di profilazione, cookie di terze parti per pubblicità, né strumenti di tracciamento.</p>
+<p class="bt"><strong>Google Fonts</strong> — Il sito carica font da Google Fonts. Questo comporta una connessione ai server di Google, che può registrare l'indirizzo IP del visitatore. Per approfondire: <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--teal);text-decoration:none">Privacy Policy di Google</a>.</p>
+<p class="bt"><strong>WhatsApp</strong> — Il link WhatsApp nei contatti reindirizza a wa.me, servizio di proprietà di Meta Platforms. Nessun dato viene trasmesso fino al click esplicito dell'utente.</p>
+
+<div class="sub">Dati che non raccogliamo</div>
+<p class="bt">Non raccogliamo dati personali, non utilizziamo analytics, non profilamo i visitatori. Non vendiamo, cediamo o condividiamo alcun dato con terze parti. Il sito è ospitato su GitHub Pages, i cui termini di servizio sono consultabili su <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" style="color:var(--teal);text-decoration:none">github.com</a>.</p>
+
+<div class="sub">I tuoi diritti</div>
+<p class="bt">Ai sensi del Regolamento UE 2016/679 (GDPR), puoi esercitare i tuoi diritti di accesso, rettifica, cancellazione e opposizione contattandoci all'indirizzo info@elisa.marketing.</p>
+
+<div class="sub">Titolare del trattamento</div>
+<p class="bt">Elisa S.r.l. Società Benefit — Via Einaudi 24, 61032 Fano (PU) — P.IVA 02628770410</p>
+<p class="bt" style="color:var(--text3)">Ultimo aggiornamento: aprile 2026</p>
+
+</div>
 <div class="prefooter" data-pf></div>
 </div>
 
@@ -655,8 +754,8 @@ const phrases=[
   "[Perché|var(--teal)], come, cosa. In questo ordine.",
   "Non è mai solo [business|var(--sky)].",
   "[Identità|var(--mag)] prima di strategia.",
-  "Proteggiamo i [brand|var(--teal)] dalle loro aziende.",
-  "La [visione|var(--sky)] guida ogni azione."
+  "Proteggiamo i [brand|var(--teal)].",
+  "Il [purpose|var(--sky)] guida ogni azione."
 ];
 let pIdx=Math.floor(Math.random()*phrases.length);
 const typedEl=document.getElementById('typed-container');
@@ -740,7 +839,7 @@ function stopNav(){clearTimeout(navTimer)}
 runNavCycle();
 
 /* NAV MAP */
-const slashMap={marketing:{t:' /marketing',c:'var(--mag)'},impact:{t:' /impact',c:'var(--sky)'},ai:{t:' /ai',c:'var(--teal)'},about:{t:' /partner',c:'var(--text3)'},partners:{t:' /partner',c:'var(--text3)'}};
+const slashMap={marketing:{t:' /marketing',c:'var(--mag)'},impact:{t:' /impact',c:'var(--sky)'},ai:{t:' /ai',c:'var(--teal)'},about:{t:' /partner',c:'var(--text3)'},partners:{t:' /partner',c:'var(--text3)'},cookie:{t:' /partner',c:'var(--text3)'}};
 
 /* ===== PREFOOTER inject ===== */
 const pfHTML=`<div class="pf-grid">
@@ -757,11 +856,12 @@ const pfHTML=`<div class="pf-grid">
 <a style="cursor:default">61032 Fano (PU)</a>
 <a style="cursor:default">P.IVA 02628770410</a></div>
 </div>
-<div class="pf-bottom"><div class="pf-b-logo">elisa<span class="pf-sl" style="color:var(--text3)"> /partner</span></div><div>© 2026 Elisa S.r.l. Società Benefit</div></div>`;
+<div class="pf-bottom"><div class="pf-b-logo">elisa<span class="pf-sl" style="color:var(--text3)"> /partner</span></div><div>© Elisa S.r.l. Società Benefit 2026 · <a href="#" onclick="go('cookie');return false" style="color:var(--text3);text-decoration:none">Cookie Policy</a></div></div>`;
 document.querySelectorAll('.prefooter').forEach(el=>el.innerHTML=pfHTML);
 
-/* ===== PAGE NAV ===== */
-function go(id){
+/* ===== PAGE NAV with hash routing ===== */
+function go(id, pushHash){
+  if(pushHash!==false) history.pushState(null,null,id==='home'?'#':'#'+id);
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-right a').forEach(a=>a.classList.remove('active'));
   const pg=document.getElementById('p-'+id);if(pg)pg.classList.add('active');
@@ -769,11 +869,18 @@ function go(id){
   currentPage=id;
   if(id==='home'){stopNav();runNavCycle()}
   else{stopNav();const m=slashMap[id];if(m)setSlash(m.t,m.c)}
-  /* Update footer logo slash */
   const fm=slashMap[id]||{t:' /partner',c:'var(--text3)'};
   document.querySelectorAll('.pf-sl').forEach(s=>{s.textContent=fm.t;s.style.color=fm.c});
   window.scrollTo({top:0,behavior:'smooth'});
 }
+/* Hash navigation */
+function routeFromHash(){
+  const h=location.hash.replace('#','').replace('/','');
+  const valid=['marketing','impact','ai','about','partners','cookie'];
+  if(h&&valid.includes(h))go(h,false);else go('home',false);
+}
+window.addEventListener('popstate',routeFromHash);
+routeFromHash();
 function toggleMob(){document.getElementById('mob-menu').classList.toggle('open')}
 
 /* ===== SCROLL REVEAL ===== */

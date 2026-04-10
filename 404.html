@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+// Redirect /ai → /#ai, /marketing → /#marketing, etc.
+var path = window.location.pathname;
+var segments = path.split('/').filter(Boolean);
+if (segments.length > 0) {
+  var page = segments[segments.length - 1];
+  window.location.replace('/' + '#' + page);
+} else {
+  window.location.replace('/');
+}
+</script>
+</head>
+<body></body>
+</html>
