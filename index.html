@@ -69,27 +69,29 @@ nav.scrolled{background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-fi
 .nav-right a[data-v="marketing"].active{background:var(--mag)}
 .nav-right a[data-v="impact"].active{background:var(--sky)}
 .nav-right a[data-v="ai"].active{background:var(--teal)}
-.nav-right a[data-v="about"].active,.nav-right a[data-v="partners"].active,.nav-right a[data-v="home"].active{background:var(--text);color:var(--bg)}
+.nav-right a[data-v="persone"].active,.nav-right a[data-v="partners"].active,.nav-right a[data-v="home"].active{background:var(--text);color:var(--bg)}
 .theme-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-left:10px;transition:border-color .2s;color:var(--text2)}
 .theme-btn:hover{border-color:var(--border2)}
 .theme-btn svg{width:16px;height:16px}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;position:relative;width:40px;height:40px;justify-content:center;align-items:center}
-.hamburger span{width:20px;height:1.5px;background:var(--text);transition:all .3s;display:block}
-.mob-menu{display:none;position:fixed;inset:0;z-index:99;background:color-mix(in srgb,var(--bg) 97%,transparent);backdrop-filter:blur(30px);flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.hamburger span{width:20px;height:1.5px;background:var(--text);transition:all .3s ease;display:block;position:absolute}
+.hamburger span:nth-child(1){transform:translateY(-6px)}
+.hamburger span:nth-child(2){transform:translateY(0)}
+.hamburger span:nth-child(3){transform:translateY(6px)}
+.hamburger.open span:nth-child(1){transform:rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg)}
+.mob-menu{display:none;position:fixed;inset:0;z-index:98;background:color-mix(in srgb,var(--bg) 97%,transparent);backdrop-filter:blur(30px);flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
 .mob-menu.open{display:flex;animation:menuIn .35s ease}
 .mob-menu a{font-family:var(--display);font-size:28px;color:var(--text);text-decoration:none;opacity:0;animation:menuItemIn .4s ease forwards}
-.mob-menu.open a:nth-child(2){animation-delay:.05s}
-.mob-menu.open a:nth-child(3){animation-delay:.1s}
-.mob-menu.open a:nth-child(4){animation-delay:.15s}
-.mob-menu.open a:nth-child(5){animation-delay:.2s}
-.mob-menu.open a:nth-child(6){animation-delay:.25s}
+.mob-menu.open a:nth-child(1){animation-delay:.05s}
+.mob-menu.open a:nth-child(2){animation-delay:.1s}
+.mob-menu.open a:nth-child(3){animation-delay:.15s}
+.mob-menu.open a:nth-child(4){animation-delay:.2s}
+.mob-menu.open a:nth-child(5){animation-delay:.25s}
 .mob-menu a:hover,.mob-menu a.active{opacity:1}
 @keyframes menuIn{from{opacity:0}to{opacity:1}}
 @keyframes menuItemIn{from{opacity:0;transform:translateY(12px)}to{opacity:.5;transform:translateY(0)}}
-.mob-close{position:absolute;top:16px;right:clamp(1.5rem,4vw,3rem);width:40px;height:40px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.mob-close span{position:absolute;width:20px;height:1.5px;background:var(--text)}
-.mob-close span:first-child{transform:rotate(45deg)}
-.mob-close span:last-child{transform:rotate(-45deg)}
 .mob-theme{margin-top:1rem;padding:10px 24px;border:1px solid var(--border);border-radius:8px;background:none;font-family:var(--body);font-size:13px;color:var(--text2);cursor:pointer;transition:border-color .2s}
 .mob-theme:hover{border-color:var(--text)}
 /* HOME ICON */
@@ -287,8 +289,10 @@ html.dark .hero-shapes .shape{opacity:.06}
 @media(max-width:768px){
   .nav-right{display:none}.hamburger{display:flex}
   /* Hero */
-  .hero-title{max-width:100%;font-size:clamp(28px,8vw,48px);min-height:auto;margin-bottom:1.5rem}
-  .hero-sub{font-size:15px}
+  .hero{padding:0 1.5rem}
+  .hero-inner{display:flex;flex-direction:column;justify-content:center;min-height:100svh}
+  .hero-title{max-width:100%;font-size:clamp(36px,11vw,56px);min-height:auto;margin-bottom:1.5rem;line-height:1.15}
+  .hero-sub{font-size:clamp(18px,4.5vw,22px);line-height:1.8;max-width:100%;margin-bottom:2rem}
   .hero-cta{flex-direction:column;width:100%}
   .hero-cta .btn{width:100%;justify-content:center}
   .mouse-glow{display:none}
@@ -339,7 +343,7 @@ html.dark .hero-shapes .shape{opacity:.06}
   <a href="#" onclick="go('marketing');return false" data-v="marketing" id="n-marketing">/marketing</a>
   <a href="#" onclick="go('impact');return false" data-v="impact" id="n-impact">/impact</a>
   <a href="#" onclick="go('ai');return false" data-v="ai" id="n-ai">/ai</a>
-  <a href="#" onclick="go('about');return false" data-v="about" id="n-about">Persone</a>
+  <a href="#" onclick="go('persone');return false" data-v="persone" id="n-persone">Persone</a>
   <button class="theme-btn" onclick="toggleTheme()" aria-label="Cambia tema">
     <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
@@ -348,12 +352,11 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="hamburger" onclick="toggleMob()"><span></span><span></span><span></span></div>
 </nav>
 <div class="mob-menu" id="mob-menu">
-  <button class="mob-close" onclick="toggleMob()"><span></span><span></span></button>
   <a href="#" onclick="go('home');toggleMob();return false">Home</a>
   <a href="#" onclick="go('marketing');toggleMob();return false">/marketing</a>
   <a href="#" onclick="go('impact');toggleMob();return false">/impact</a>
   <a href="#" onclick="go('ai');toggleMob();return false">/ai</a>
-  <a href="#" onclick="go('about');toggleMob();return false">Persone</a>
+  <a href="#" onclick="go('persone');toggleMob();return false">Persone</a>
   <button class="mob-theme" onclick="toggleTheme()">Tema chiaro / scuro</button>
 </div>
 
@@ -375,7 +378,7 @@ html.dark .hero-shapes .shape{opacity:.06}
   <p class="hero-sub">Crediamo che <span class="hl">purpose</span> e <span class="hl">identità</span> di brand debbano essere protetti, a volte anche dalle loro stesse organizzazioni. Puntiamo a chiarire la <span class="hl">visione</span>, creare <span class="hl">consapevolezza</span> e dirigere con <span class="hl">lucidità</span>. Ispirare manager e specialisti è il nostro modo per lasciare un segno nella vita delle persone.</p>
   <div class="hero-cta">
     <a class="btn btn-primary" onclick="document.getElementById('home-areas').scrollIntoView({behavior:'smooth'})">Competenze</a>
-    <a class="btn btn-ghost" onclick="go('about')">Persone</a>
+    <a class="btn btn-ghost" onclick="go('persone')">Persone</a>
   </div>
 </div>
 <div class="scroll-hint" onclick="document.getElementById('home-areas').scrollIntoView({behavior:'smooth'})">
@@ -490,7 +493,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="cross-nav"><div class="areas-grid">
 <div class="area" data-c="sky" onclick="go('impact')"><div class="a-slash" style="color:var(--sky)">/impact</div><div class="a-label">Social Impact by Design</div><div class="a-arrow">Scopri →</div></div>
 <div class="area" data-c="teal" onclick="go('ai')"><div class="a-slash" style="color:var(--teal)">/ai</div><div class="a-label">Augmented Intelligence</div><div class="a-arrow">Scopri →</div></div>
-<div class="area" data-c="mag" onclick="go('about')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Abbiamo sposato Elisa</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="mag" onclick="go('persone')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Abbiamo sposato Elisa</div><div class="a-arrow">Scopri →</div></div>
 </div></div>
 <div class="prefooter" data-pf></div>
 </div>
@@ -528,7 +531,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="cross-nav"><div class="areas-grid">
 <div class="area" data-c="mag" onclick="go('marketing')"><div class="a-slash" style="color:var(--mag)">/marketing</div><div class="a-label">Marketing Partner</div><div class="a-arrow">Scopri →</div></div>
 <div class="area" data-c="teal" onclick="go('ai')"><div class="a-slash" style="color:var(--teal)">/ai</div><div class="a-label">Augmented Intelligence</div><div class="a-arrow">Scopri →</div></div>
-<div class="area" data-c="mag" onclick="go('about')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Abbiamo sposato Elisa</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="mag" onclick="go('persone')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Abbiamo sposato Elisa</div><div class="a-arrow">Scopri →</div></div>
 </div></div>
 <div class="prefooter" data-pf></div>
 </div>
@@ -565,13 +568,13 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="cross-nav"><div class="areas-grid">
 <div class="area" data-c="mag" onclick="go('marketing')"><div class="a-slash" style="color:var(--mag)">/marketing</div><div class="a-label">Marketing Partner</div><div class="a-arrow">Scopri →</div></div>
 <div class="area" data-c="sky" onclick="go('impact')"><div class="a-slash" style="color:var(--sky)">/impact</div><div class="a-label">Social Impact by Design</div><div class="a-arrow">Scopri →</div></div>
-<div class="area" data-c="mag" onclick="go('about')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Abbiamo sposato Elisa</div><div class="a-arrow">Scopri →</div></div>
+<div class="area" data-c="mag" onclick="go('persone')" style="border-right:none"><div class="a-slash" style="color:var(--text3)">Persone</div><div class="a-label">Abbiamo sposato Elisa</div><div class="a-arrow">Scopri →</div></div>
 </div></div>
 <div class="prefooter" data-pf></div>
 </div>
 
 <!-- ==================== PERSONE ==================== -->
-<div class="page" id="p-about">
+<div class="page" id="p-persone">
 <div class="s-hero"><div class="eyebrow" style="color:var(--text3)">Persone</div>
 <h1>Abbiamo sposato <span style="color:var(--teal)">Elisa</span></h1>
 <p class="intro">"Non si tratta mai di solo lavoro. È sempre una questione personale. Poi è lavoro."</p></div>
@@ -845,7 +848,7 @@ function stopNav(){clearTimeout(navTimer)}
 runNavCycle();
 
 /* NAV MAP */
-const slashMap={marketing:{t:' /marketing',c:'var(--mag)'},impact:{t:' /impact',c:'var(--sky)'},ai:{t:' /ai',c:'var(--teal)'},about:{t:' /partner',c:'var(--text3)'},partners:{t:' /partner',c:'var(--text3)'},cookie:{t:' /partner',c:'var(--text3)'}};
+const slashMap={marketing:{t:' /marketing',c:'var(--mag)'},impact:{t:' /impact',c:'var(--sky)'},ai:{t:' /ai',c:'var(--teal)'},persone:{t:' /partner',c:'var(--text3)'},partners:{t:' /partner',c:'var(--text3)'},cookie:{t:' /partner',c:'var(--text3)'}};
 
 /* ===== PREFOOTER inject ===== */
 const pfHTML=`<div class="pf-grid">
@@ -882,12 +885,15 @@ function go(id, pushHash){
 /* Hash navigation */
 function routeFromHash(){
   const h=location.hash.replace('#','').replace('/','');
-  const valid=['marketing','impact','ai','about','partners','cookie'];
+  const valid=['marketing','impact','ai','persone','partners','cookie'];
   if(h&&valid.includes(h))go(h,false);else go('home',false);
 }
 window.addEventListener('popstate',routeFromHash);
 routeFromHash();
-function toggleMob(){document.getElementById('mob-menu').classList.toggle('open')}
+function toggleMob(){
+  document.getElementById('mob-menu').classList.toggle('open');
+  document.querySelector('.hamburger').classList.toggle('open');
+}
 
 /* ===== SCROLL REVEAL ===== */
 const revealObs=new IntersectionObserver((entries)=>{
