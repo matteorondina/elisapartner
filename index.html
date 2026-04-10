@@ -145,7 +145,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border2)}.btn-ghost:hover{border-color:var(--text);transform:translateY(-2px)}
 
 /* AREA BLOCKS */
-.areas{padding:0 clamp(1.5rem,4vw,3rem)}
+.areas{padding:0 clamp(1.5rem,4vw,3rem);scroll-margin-top:80px}
 .areas-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border)}
 .area{padding:2.5rem 2rem;border-right:1px solid var(--border);cursor:pointer;transition:background .3s;position:relative;background:var(--card)}
 .area:last-child{border-right:none}
@@ -288,16 +288,17 @@ html.dark .hero-shapes .shape{opacity:.06}
 }
 @media(max-width:768px){
   .nav-right{display:none}.hamburger{display:flex}
-  /* Hero */
-  .hero{padding:0 1.5rem}
-  .hero-inner{display:flex;flex-direction:column;justify-content:center;min-height:100svh}
-  .hero-title{max-width:100%;font-size:clamp(36px,11vw,56px);min-height:auto;margin-bottom:1.5rem;line-height:1.15}
-  .hero-sub{font-size:clamp(18px,4.5vw,22px);line-height:1.8;max-width:100%;margin-bottom:2rem}
-  .hero-cta{flex-direction:column;width:100%}
+  /* Hero: title fills first screen, subtitle below fold */
+  .hero{padding:0 1.5rem;align-items:flex-start}
+  .hero-inner{display:block;width:100%}
+  .hero-title{max-width:100%;font-size:clamp(40px,12vw,60px);min-height:calc(100svh - 80px);display:flex;align-items:center;margin-bottom:0;line-height:1.1;padding-top:64px;box-sizing:border-box}
+  .hero-sub{font-size:clamp(19px,5vw,24px);line-height:1.85;max-width:100%;margin-bottom:2.5rem;padding-top:2rem}
+  .hero-sub .hl{font-weight:600}
+  .hero-cta{flex-direction:column;width:100%;padding-bottom:3rem}
   .hero-cta .btn{width:100%;justify-content:center}
   .mouse-glow{display:none}
   .hero-shapes .shape{opacity:.04}
-  .scroll-hint{bottom:1.5rem}
+  .scroll-hint{display:none}
   /* Areas */
   .areas-grid{grid-template-columns:1fr}.area{border-right:none;border-bottom:1px solid var(--border)}.area:last-child{border-bottom:none}
   .area .a-arrow{opacity:1;transform:translateX(0)}
