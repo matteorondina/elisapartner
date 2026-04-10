@@ -141,8 +141,12 @@ html.dark .hero-shapes .shape{opacity:.06}
 /* SERVICE CARD */
 .svc{border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:1.25rem;background:var(--card);transition:border-color .3s}
 .svc:hover{border-color:var(--border2)}
+/* Numbered variant */
 .svc-head{padding:1.5rem 1.75rem;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border)}
 .svc-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;color:#fff}
+/* Accent-line variant (no number) */
+.svc-accent{border-left:3px solid var(--mag)}
+.svc-accent .svc-head{padding:1.5rem 1.75rem;display:flex;align-items:center;border-bottom:1px solid var(--border)}
 .svc-title{font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:-.3px}
 .svc-sub{font-size:13px;color:var(--text3);margin-top:2px;font-weight:300}
 .svc-body{padding:1.5rem 1.75rem}
@@ -150,6 +154,14 @@ html.dark .hero-shapes .shape{opacity:.06}
 .svc-row:last-child{border-bottom:none}
 .svc-n{font-weight:600}.svc-d{color:var(--text2);line-height:1.5;font-weight:300}.svc-o{font-weight:500}
 .svc-meta{font-size:12px;color:var(--text3);padding:1rem 1.75rem;border-top:1px solid var(--border);font-weight:300}
+/* Pricing accordion */
+.svc-price-toggle{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.75rem;border-top:1px solid var(--border);cursor:pointer;font-size:13px;font-weight:500;color:var(--text2);transition:color .2s;user-select:none}
+.svc-price-toggle:hover{color:var(--text)}
+.svc-price-toggle .arrow{transition:transform .3s;font-size:11px}
+.svc-price-toggle.open .arrow{transform:rotate(180deg)}
+.svc-price-body{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 1.75rem}
+.svc-price-body.open{max-height:80px}
+.svc-price-inner{padding:0 0 1.25rem;font-size:15px;font-weight:500;color:var(--text)}
 .approach{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;margin:1.5rem 0;border-radius:12px;overflow:hidden}
 .approach-step{background:var(--bg2);padding:1.25rem .75rem;text-align:center;position:relative}
 .approach-step::after{content:'→';position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:12px;z-index:1}
@@ -349,49 +361,79 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="page" id="p-marketing">
 <div class="s-hero"><div class="eyebrow" style="color:var(--mag)">elisa /marketing</div>
 <h1>Proteggiamo il tuo <span style="color:var(--mag)">brand</span></h1>
-<p class="intro">Le aziende investono quasi tutto in attività sales a discapito di strategie di medio-lungo termine. Noi invertiamo questa logica: partiamo dall'identità, costruiamo la strategia, eseguiamo con metodo e formiamo le tue persone.</p></div>
+<p class="intro">Le organizzazioni investono quasi tutto in attività sales a discapito di strategie di medio-lungo termine. Noi invertiamo questa logica: partiamo dall'identità, costruiamo la strategia, eseguiamo con metodo e formiamo le tue persone.</p></div>
 <div class="cnt">
-<div class="quote" style="border-color:var(--mag)">To save Brands from their companies.</div>
-<div class="sub">Il metodo</div>
-<p class="bt">Il tuo business è unico, il marketing no. I fondamentali sono trasversali a ogni settore, ma solo ascoltandoti possiamo capire come aiutarti davvero.</p>
+<div class="quote" style="border-color:var(--mag)">To save Brands.</div>
+<div class="sub">Il percorso</div>
+<p class="bt">Il tuo business è unico, il marketing no. I fondamentali sono trasversali a ogni settore, ma solo conoscendoti possiamo capire come aiutarti davvero.</p>
 <div class="approach">
-<div class="approach-step"><div class="num">01</div><div class="name">Ascolto</div></div>
-<div class="approach-step"><div class="num">02</div><div class="name">Analisi</div></div>
-<div class="approach-step"><div class="num">03</div><div class="name">Confronto</div></div>
+<div class="approach-step"><div class="num">01</div><div class="name">Conoscenza</div></div>
+<div class="approach-step"><div class="num">02</div><div class="name">Relazione</div></div>
+<div class="approach-step"><div class="num">03</div><div class="name">Analisi</div></div>
 <div class="approach-step"><div class="num">04</div><div class="name">Strategia</div></div>
 <div class="approach-step"><div class="num">05</div><div class="name">Esecuzione</div></div>
 <div class="approach-step"><div class="num">06</div><div class="name">Training</div></div>
 </div>
-<p class="bt">L'obiettivo finale è sempre renderti autonomo. Non creiamo dipendenza — creiamo competenza.</p>
+<p class="bt">L'obiettivo finale è sempre renderti autonomo, su qualsiasi progetto: non creiamo dipendenza, creiamo competenza.</p>
 <div class="sub">I valori</div>
 <div class="vals">
 <div class="val"><div class="vn">Umanità</div><div class="vd">Prima le persone</div></div>
-<div class="val"><div class="vn">Trasparenza</div><div class="vd">Fiducia, sempre</div></div>
-<div class="val"><div class="vn">Responsabilità</div><div class="vd">Ci mettiamo la faccia</div></div>
-<div class="val"><div class="vn">Presenza</div><div class="vd">Ogni giorno</div></div>
+<div class="val"><div class="vn">Responsabilità</div><div class="vd">Abbiamo cura</div></div>
+<div class="val"><div class="vn">Presenza</div><div class="vd">Ci siamo sempre</div></div>
+<div class="val"><div class="vn">Critica</div><div class="vd">Cerchiamo la verità</div></div>
 </div>
 <div class="divider"></div>
 <div class="sub">I servizi</div>
-<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--mag)">1</div><div><div class="svc-title">Brand Strategy</div><div class="svc-sub">Identità, immagine e posizionamento</div></div></div>
-<div class="svc-body"><div class="svc-row"><div class="svc-n">Brand Identity</div><div class="svc-d">Purpose, vision, mission, nome, logo, payoff.</div><div class="svc-o" style="color:var(--mag)">→ Il tuo perché</div></div>
-<div class="svc-row"><div class="svc-n">Brand Image</div><div class="svc-d">Tono di voce, carattere, valori, vantaggi.</div><div class="svc-o" style="color:var(--mag)">→ La tua voce</div></div>
-<div class="svc-row"><div class="svc-n">Brand Positioning</div><div class="svc-d">Posizionamento rispetto a mercato e competitor.</div><div class="svc-o" style="color:var(--mag)">→ La tua posizione</div></div></div>
-<div class="svc-meta">~30 giorni · 2-3 workshop · Manager coinvolti</div></div>
-<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--mag)">2</div><div><div class="svc-title">Marketing Strategy</div><div class="svc-sub">Analisi, pianificazione, obiettivi e metriche</div></div></div>
-<div class="svc-body"><div class="svc-row"><div class="svc-n">Report Zero</div><div class="svc-d">Fotografia di investimenti, risultati, frizioni, valore.</div><div class="svc-o" style="color:var(--mag)">→ Stato dell'arte</div></div>
+
+<div class="svc svc-accent" style="border-left-color:var(--mag)">
+<div class="svc-head"><div><div class="svc-title">Brand strategy</div><div class="svc-sub">Sviluppo del marchio</div></div></div>
+<div class="svc-body">
+<div class="svc-row"><div class="svc-n">Identità</div><div class="svc-d">Purpose, vision, mission, nome, logo, payoff.</div><div class="svc-o" style="color:var(--mag)">→ Il tuo perché</div></div>
+<div class="svc-row"><div class="svc-n">Immagine</div><div class="svc-d">Tono di voce, carattere, valori, vantaggi.</div><div class="svc-o" style="color:var(--mag)">→ La tua voce</div></div>
+<div class="svc-row"><div class="svc-n">Posizionamento</div><div class="svc-d">Mercato e competitor.</div><div class="svc-o" style="color:var(--mag)">→ La tua posizione</div></div>
+</div>
+<div class="svc-meta">~30 giorni · 2-3 workshop · Manager coinvolti</div>
+<div class="svc-price-toggle" onclick="togglePrice(this)">Quanto costa? <span class="arrow">▾</span></div>
+<div class="svc-price-body"><div class="svc-price-inner">Da € 2.000</div></div>
+</div>
+
+<div class="svc svc-accent" style="border-left-color:var(--mag)">
+<div class="svc-head"><div><div class="svc-title">Marketing strategy</div><div class="svc-sub">Analisi, pianificazione, obiettivi e metriche</div></div></div>
+<div class="svc-body">
+<div class="svc-row"><div class="svc-n">Report zero</div><div class="svc-d">Fotografia di investimenti, risultati, frizioni, valore.</div><div class="svc-o" style="color:var(--mag)">→ Stato dell'arte</div></div>
 <div class="svc-row"><div class="svc-n">Target & KPI</div><div class="svc-d">Target, journey, obiettivi, metriche.</div><div class="svc-o" style="color:var(--mag)">→ Bussola strategica</div></div>
-<div class="svc-row"><div class="svc-n">Piano Operativo</div><div class="svc-d">Touchpoint, piano editoriale, budget, Gantt.</div><div class="svc-o" style="color:var(--mag)">→ Roadmap esecutiva</div></div></div>
-<div class="svc-meta">~45 giorni · 4-5 workshop · Manager coinvolti</div></div>
-<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--mag)">3</div><div><div class="svc-title">Marketing Consulting</div><div class="svc-sub">Affiancamento operativo e formazione</div></div></div>
-<div class="svc-body"><div class="svc-row"><div class="svc-n">Setup & Execution</div><div class="svc-d">Branding, lead generation, UX, customer care, fidelizzazione.</div><div class="svc-o" style="color:var(--mag)">→ Macchina in moto</div></div>
-<div class="svc-row"><div class="svc-n">Scouting Fornitori</div><div class="svc-d">Confronto preventivi, selezione partner.</div><div class="svc-o" style="color:var(--mag)">→ Partner validati</div></div>
-<div class="svc-row"><div class="svc-n">Coaching & Training</div><div class="svc-d">Affiancamento sales e marketing, coaching ai manager.</div><div class="svc-o" style="color:var(--mag)">→ Team formato</div></div></div>
-<div class="svc-meta">12 mesi · 1 sessione/settimana + contatto quotidiano</div></div>
-<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--mag)">4</div><div><div class="svc-title">Temporary Management</div><div class="svc-sub">Responsabilità al centro</div></div></div>
-<div class="svc-body"><div class="svc-row"><div class="svc-n">Gestione completa</div><div class="svc-d">Budget, project management, pricing, business model.</div><div class="svc-o" style="color:var(--mag)">→ Il tuo CMO</div></div>
-<div class="svc-row"><div class="svc-n">Team Building</div><div class="svc-d">Selezione risorse, training on-the-job.</div><div class="svc-o" style="color:var(--mag)">→ Reparto creato</div></div>
-<div class="svc-row"><div class="svc-n">CRM & Offerta</div><div class="svc-d">CRM, definizione offerta prodotti/servizi.</div><div class="svc-o" style="color:var(--mag)">→ Sistema operativo</div></div></div>
-<div class="svc-meta">12 mesi · 2 sessioni/settimana + contatto quotidiano</div></div>
+<div class="svc-row"><div class="svc-n">Piano operativo</div><div class="svc-d">Touchpoint, piano editoriale, budget, Gantt.</div><div class="svc-o" style="color:var(--mag)">→ Roadmap esecutiva</div></div>
+</div>
+<div class="svc-meta">~45 giorni · 4-5 workshop · Manager coinvolti</div>
+<div class="svc-price-toggle" onclick="togglePrice(this)">Quanto costa? <span class="arrow">▾</span></div>
+<div class="svc-price-body"><div class="svc-price-inner">Da € 3.000</div></div>
+</div>
+
+<div class="svc svc-accent" style="border-left-color:var(--mag)">
+<div class="svc-head"><div><div class="svc-title">Marketing consulting</div><div class="svc-sub">Affiancamento operativo e formazione</div></div></div>
+<div class="svc-body">
+<div class="svc-row"><div class="svc-n">Setup & execution</div><div class="svc-d">Branding, lead generation, UX, customer care, fidelizzazione.</div><div class="svc-o" style="color:var(--mag)">→ Macchina in moto</div></div>
+<div class="svc-row"><div class="svc-n">Scouting fornitori</div><div class="svc-d">Confronto preventivi, selezione partner.</div><div class="svc-o" style="color:var(--mag)">→ Partner validati</div></div>
+<div class="svc-row"><div class="svc-n">Coaching & training</div><div class="svc-d">Affiancamento sales e marketing, coaching ai manager.</div><div class="svc-o" style="color:var(--mag)">→ Team formato</div></div>
+</div>
+<div class="svc-meta">12 mesi · 1 sessione/settimana + contatto quotidiano</div>
+<div class="svc-price-toggle" onclick="togglePrice(this)">Quanto costa? <span class="arrow">▾</span></div>
+<div class="svc-price-body"><div class="svc-price-inner">Da € 24.000</div></div>
+</div>
+
+<div class="svc svc-accent" style="border-left-color:var(--mag)">
+<div class="svc-head"><div><div class="svc-title">Temporary management</div><div class="svc-sub">Responsabilità al centro</div></div></div>
+<div class="svc-body">
+<div class="svc-row"><div class="svc-n">Gestione completa</div><div class="svc-d">Budget, project management, pricing, business model.</div><div class="svc-o" style="color:var(--mag)">→ Il tuo CMO</div></div>
+<div class="svc-row"><div class="svc-n">Team building</div><div class="svc-d">Selezione risorse, training on-the-job.</div><div class="svc-o" style="color:var(--mag)">→ Reparto creato</div></div>
+<div class="svc-row"><div class="svc-n">CRM & offerta</div><div class="svc-d">CRM, definizione offerta prodotti/servizi.</div><div class="svc-o" style="color:var(--mag)">→ Sistema operativo</div></div>
+</div>
+<div class="svc-meta">12 mesi · 2 sessioni/settimana + contatto quotidiano</div>
+<div class="svc-price-toggle" onclick="togglePrice(this)">Quanto costa? <span class="arrow">▾</span></div>
+<div class="svc-price-body"><div class="svc-price-inner">Da € 48.000</div></div>
+</div>
+<div class="callout" style="border-color:var(--mag);color:var(--mag)">Il marketing non è per tutti. Parliamone per capire se possiamo lavorare insieme.</div>
+
 </div>
 <div class="cross-nav"><div class="areas-grid">
 <div class="area" data-c="sky" onclick="go('impact')"><div class="a-slash" style="color:var(--sky)">/impact</div><div class="a-label">Social Impact by Design</div><div class="a-arrow">Scopri →</div></div>
@@ -416,16 +458,19 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="cmp"><div class="cmp-s them"><div class="cmp-l" style="color:var(--text3)">L'approccio classico</div><div class="cmp-q">"Devo fare il report ESG"</div><div class="cmp-f">Compliance, adempimento, carta</div></div>
 <div class="cmp-s" style="background:color-mix(in srgb,var(--sky) 8%,var(--bg))"><div class="cmp-l" style="color:var(--sky)">Il nostro approccio</div><div class="cmp-q">"Voglio ripensare il mio modello"</div><div class="cmp-f">Cultura, strategia, impatto misurabile</div></div></div>
 <div class="divider"></div><div class="sub">Il percorso</div>
-<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--sky)">1</div><div><div class="svc-title">Impact Awareness</div><div class="svc-sub">Dal profitto al valore condiviso</div></div></div>
-<div class="svc-body"><div class="svc-row"><div class="svc-n">Impact Workshop</div><div class="svc-d">Giornata con il board: impatto sociale, casi studio, esercitazione.</div><div class="svc-o" style="color:var(--sky)">→ Management consapevole</div></div>
-<div class="svc-row"><div class="svc-n">Purpose Discovery</div><div class="svc-d">Far emergere il cambiamento positivo che la tua impresa può generare.</div><div class="svc-o" style="color:var(--sky)">→ Purpose definito</div></div></div></div>
-<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--sky)">2</div><div><div class="svc-title">Impact Strategy</div><div class="svc-sub">Progettare l'impatto nel business</div></div></div>
-<div class="svc-body"><div class="svc-row"><div class="svc-n">Social Impact Assessment</div><div class="svc-d">Mappatura impatti, stakeholder, teoria del cambiamento.</div><div class="svc-o" style="color:var(--sky)">→ Mappa d'impatto</div></div>
-<div class="svc-row"><div class="svc-n">SROI Design</div><div class="svc-d">Campo, outcome, valore, calcolo del rapporto.</div><div class="svc-o" style="color:var(--sky)">→ SROI documentato</div></div>
-<div class="svc-row"><div class="svc-n">Benefit Strategy</div><div class="svc-d">Diventare Società Benefit: finalità, statuto, piano.</div><div class="svc-o" style="color:var(--sky)">→ Roadmap Benefit</div></div></div></div>
-<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--sky)">3</div><div><div class="svc-title">Impact Reporting & Growth</div><div class="svc-sub">Misurare, comunicare, migliorare</div></div></div>
-<div class="svc-body"><div class="svc-row"><div class="svc-n">Relazione d'Impatto</div><div class="svc-d">Relazione annuale Società Benefit, standard internazionali.</div><div class="svc-o" style="color:var(--sky)">→ Report annuale</div></div>
-<div class="svc-row"><div class="svc-n">Impact Coaching</div><div class="svc-d">KPI d'impatto, ottimizzazione, preparazione ESG.</div><div class="svc-o" style="color:var(--sky)">→ Retainer trimestrale</div></div></div></div>
+<div class="svc svc-accent" style="border-left-color:var(--sky)">
+<div class="svc-head"><div><div class="svc-title">Impact awareness</div><div class="svc-sub">Dal profitto al valore condiviso</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">Impact workshop</div><div class="svc-d">Giornata con il board: impatto sociale, casi studio, esercitazione.</div><div class="svc-o" style="color:var(--sky)">→ Management consapevole</div></div>
+<div class="svc-row"><div class="svc-n">Purpose discovery</div><div class="svc-d">Far emergere il cambiamento positivo che la tua impresa può generare.</div><div class="svc-o" style="color:var(--sky)">→ Purpose definito</div></div></div></div>
+<div class="svc svc-accent" style="border-left-color:var(--sky)">
+<div class="svc-head"><div><div class="svc-title">Impact strategy</div><div class="svc-sub">Progettare l'impatto nel business</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">Social impact assessment</div><div class="svc-d">Mappatura impatti, stakeholder, teoria del cambiamento.</div><div class="svc-o" style="color:var(--sky)">→ Mappa d'impatto</div></div>
+<div class="svc-row"><div class="svc-n">SROI design</div><div class="svc-d">Campo, outcome, valore, calcolo del rapporto.</div><div class="svc-o" style="color:var(--sky)">→ SROI documentato</div></div>
+<div class="svc-row"><div class="svc-n">Benefit strategy</div><div class="svc-d">Diventare Società Benefit: finalità, statuto, piano.</div><div class="svc-o" style="color:var(--sky)">→ Roadmap Benefit</div></div></div></div>
+<div class="svc svc-accent" style="border-left-color:var(--sky)">
+<div class="svc-head"><div><div class="svc-title">Impact reporting & growth</div><div class="svc-sub">Misurare, comunicare, migliorare</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">Relazione d'impatto</div><div class="svc-d">Relazione annuale Società Benefit, standard internazionali.</div><div class="svc-o" style="color:var(--sky)">→ Report annuale</div></div>
+<div class="svc-row"><div class="svc-n">Impact coaching</div><div class="svc-d">KPI d'impatto, ottimizzazione, preparazione ESG.</div><div class="svc-o" style="color:var(--sky)">→ Retainer trimestrale</div></div></div></div>
 <div class="callout" style="border-color:var(--sky);color:var(--sky)">Elisa stessa è Società Benefit. Non vendiamo teoria — pratichiamo quello che insegniamo.</div>
 </div>
 <div class="cross-nav"><div class="areas-grid">
@@ -451,15 +496,19 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="cmp"><div class="cmp-s them"><div class="cmp-l" style="color:var(--text3)">L'approccio degli altri</div><div class="cmp-q">"Ti implementiamo l'AI"</div><div class="cmp-f">Strumenti, automazioni, chatbot</div></div>
 <div class="cmp-s" style="background:color-mix(in srgb,var(--teal) 8%,var(--bg))"><div class="cmp-l" style="color:var(--teal)">Il nostro approccio</div><div class="cmp-q">"Ti aiutiamo a pensare con l'AI"</div><div class="cmp-f">Strategia, persone, impatto misurabile</div></div></div>
 <div class="divider"></div><div class="sub">Il percorso</div>
-<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--teal)">1</div><div><div class="svc-title">AI Discovery</div><div class="svc-sub">Capire dove l'AI genera valore</div></div></div>
-<div class="svc-body"><div class="svc-row"><div class="svc-n">AI Assessment</div><div class="svc-d">Mappatura processi, pain point, maturità digitale.</div><div class="svc-o" style="color:var(--teal)">→ Report AI Readiness</div></div>
-<div class="svc-row"><div class="svc-n">AI Workshop</div><div class="svc-d">Giornata con il management: demo, casi studio, esercitazioni.</div><div class="svc-o" style="color:var(--teal)">→ Team allineato</div></div></div></div>
-<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--teal)">2</div><div><div class="svc-title">AI Roadmap</div><div class="svc-sub">Piano d'azione con priorità e KPI</div></div></div>
-<div class="svc-body"><div class="svc-row"><div class="svc-n">AI Strategy Design</div><div class="svc-d">Obiettivi, use case, costo-beneficio, piano 6-12 mesi.</div><div class="svc-o" style="color:var(--teal)">→ AI Roadmap</div></div>
-<div class="svc-row"><div class="svc-n">Tool Selection</div><div class="svc-d">Analisi comparativa, scouting fornitori, supervisione PoC.</div><div class="svc-o" style="color:var(--teal)">→ Matrice decisionale</div></div></div></div>
-<div class="svc"><div class="svc-head"><div class="svc-num" style="background:var(--teal)">3</div><div><div class="svc-title">AI Adoption</div><div class="svc-sub">Formazione e change management</div></div></div>
-<div class="svc-body"><div class="svc-row"><div class="svc-n">Training Program</div><div class="svc-d">Percorsi per ruolo, prompt engineering, governance.</div><div class="svc-o" style="color:var(--teal)">→ Team autonomo</div></div>
-<div class="svc-row"><div class="svc-n">AI Coaching</div><div class="svc-d">Sessioni periodiche, revisione KPI, supporto continuo.</div><div class="svc-o" style="color:var(--teal)">→ Retainer trimestrale</div></div></div></div>
+<div class="svc svc-accent" style="border-left-color:var(--teal)">
+<div class="svc-head"><div><div class="svc-title">AI discovery</div><div class="svc-sub">Capire dove l'AI genera valore</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">AI assessment</div><div class="svc-d">Mappatura processi, pain point, maturità digitale.</div><div class="svc-o" style="color:var(--teal)">→ Report AI readiness</div></div>
+<div class="svc-row"><div class="svc-n">AI workshop</div><div class="svc-d">Giornata con il management: demo, casi studio, esercitazioni.</div><div class="svc-o" style="color:var(--teal)">→ Team allineato</div></div></div></div>
+<div class="svc svc-accent" style="border-left-color:var(--teal)">
+<div class="svc-head"><div><div class="svc-title">AI roadmap</div><div class="svc-sub">Piano d'azione con priorità e KPI</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">AI strategy design</div><div class="svc-d">Obiettivi, use case, costo-beneficio, piano 6-12 mesi.</div><div class="svc-o" style="color:var(--teal)">→ AI roadmap</div></div>
+<div class="svc-row"><div class="svc-n">Tool selection</div><div class="svc-d">Analisi comparativa, scouting fornitori, supervisione PoC.</div><div class="svc-o" style="color:var(--teal)">→ Matrice decisionale</div></div></div></div>
+<div class="svc svc-accent" style="border-left-color:var(--teal)">
+<div class="svc-head"><div><div class="svc-title">AI adoption</div><div class="svc-sub">Formazione e change management</div></div></div>
+<div class="svc-body"><div class="svc-row"><div class="svc-n">Training program</div><div class="svc-d">Percorsi per ruolo, prompt engineering, governance.</div><div class="svc-o" style="color:var(--teal)">→ Team autonomo</div></div>
+<div class="svc-row"><div class="svc-n">AI coaching</div><div class="svc-d">Sessioni periodiche, revisione KPI, supporto continuo.</div><div class="svc-o" style="color:var(--teal)">→ Retainer trimestrale</div></div></div></div>
+<div class="callout" style="border-color:var(--teal);color:var(--teal)">Vuoi capire se l'AI può fare la differenza nella tua organizzazione? Partiamo da una conversazione.</div>
 </div>
 <div class="cross-nav"><div class="areas-grid">
 <div class="area" data-c="mag" onclick="go('marketing')"><div class="a-slash" style="color:var(--mag)">/marketing</div><div class="a-label">Marketing Partner</div><div class="a-arrow">Scopri →</div></div>
@@ -732,6 +781,13 @@ const revealObs=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}});
 },{threshold:0.15});
 document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+/* ===== PRICE ACCORDION ===== */
+function togglePrice(el){
+  el.classList.toggle('open');
+  const body=el.nextElementSibling;
+  body.classList.toggle('open');
+}
 </script>
 </body>
 </html>
