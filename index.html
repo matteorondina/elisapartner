@@ -222,18 +222,19 @@ html.dark .hero-shapes .shape{opacity:.06}
 
 /* ABOUT */
 .cnt-wide{max-width:1200px;padding:0 clamp(1.5rem,4vw,3rem) 0}
-.founders-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
-.founder{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--card)}
-.founder-top{padding:2.5rem;display:flex;gap:2rem;align-items:flex-start}
-.founder-avatar{width:110px;height:110px;border-radius:50%;flex-shrink:0;overflow:hidden}
+.founders-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;align-items:stretch}
+.founder{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--card);display:flex;flex-direction:column}
+.founder-top{padding:2.5rem 2.5rem 1.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;flex:1}
+.founder-avatar{width:130px;height:130px;border-radius:50%;flex-shrink:0;overflow:hidden;margin-bottom:1.25rem}
 .founder-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-.founder-info{flex:1}
+.founder-info{width:100%}
 .founder-name{font-family:var(--display);font-size:28px;letter-spacing:-1px;font-weight:500;margin-bottom:2px}
 .founder-claim{font-size:15px;font-weight:600;margin-top:4px}
 .founder-role{font-size:14px;color:var(--text3);margin-top:4px;font-weight:300}
-.founder-bio{font-size:15px;color:var(--text2);line-height:1.7;margin-top:1rem;font-weight:300}
-.founder-bottom{padding:1.25rem 2.5rem;border-top:1px solid var(--border)}
-.founder-tags{display:flex;gap:8px;flex-wrap:wrap}
+.founder-bio{font-size:14px;color:var(--text2);line-height:1.7;margin-top:1.25rem;font-weight:300;text-align:left}
+.founder-link{display:inline-block;margin-top:.75rem;font-size:13px;text-decoration:none;font-weight:500}
+.founder-bottom{padding:1.25rem 2.5rem;border-top:1px solid var(--border);margin-top:auto}
+.founder-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .tag{font-size:11px;padding:5px 12px;border-radius:20px;font-weight:500;border:1px solid var(--border);color:var(--text2)}
 /* TESTIMONIALS */
 .testi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1.5rem 0}
@@ -579,13 +580,13 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="founders-grid">
 <div class="founder" style="border-color:color-mix(in srgb,var(--teal) 20%,var(--border))">
 <div class="founder-top">
-<div class="founder-avatar" style="background:none"><img src="img/stefano.png" alt="Stefano Storoni" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
+<div class="founder-avatar"><img src="img/stefano.png" alt="Stefano Storoni"></div>
 <div class="founder-info">
 <div class="founder-name">Stefano Storoni</div>
 <div class="founder-claim" style="color:var(--teal)">Contadino del Marketing</div>
 <div class="founder-role">Marketing Consultant</div>
 <p class="founder-bio">Il mio lavoro non è spiegarvi come si fa, ma farlo insieme a voi. Entro nella vostra quotidianità per osservare, formare e progettare. Mi dicono che sono chirurgico nel porre le domande, ma lo faccio sempre con il massimo rispetto per il valore che avete già creato. La mia è una presenza costante e critica: seminiamo oggi, con lucidità e pazienza, per raccogliere risultati concreti e duraturi nel tempo.</p>
-<a href="https://www.linkedin.com/in/stefanostoroni/" target="_blank" style="display:inline-block;margin-top:.75rem;font-size:13px;color:var(--teal);text-decoration:none;font-weight:500">LinkedIn →</a>
+<a href="https://www.linkedin.com/in/stefanostoroni/" target="_blank" class="founder-link" style="color:var(--teal)">LinkedIn →</a>
 </div></div>
 <div class="founder-bottom"><div class="founder-tags">
 <span class="tag" style="border-color:var(--mag);color:var(--mag)">/marketing</span>
@@ -596,13 +597,13 @@ html.dark .hero-shapes .shape{opacity:.06}
 
 <div class="founder">
 <div class="founder-top">
-<div class="founder-avatar" style="background:none"><img src="img/matteo.png" alt="Matteo Rondina" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
+<div class="founder-avatar"><img src="img/matteo.png" alt="Matteo Rondina"></div>
 <div class="founder-info">
 <div class="founder-name">Matteo Rondina</div>
 <div class="founder-claim" style="color:var(--text2)">Costruttore di ponti</div>
 <div class="founder-role">Business & Finance</div>
-<p class="founder-bio">Matteo abbraccia i valori di Stefano e lo affianca nel tramutare visione in strategia e business. Manager nel Banking, nerd, visionario e iper attivo, cerca di gestire senza successo il suo fuoco interiore, con cui ogni tanto si scotta.</p>
-<a href="https://www.linkedin.com/in/matteorondina/" target="_blank" style="display:inline-block;margin-top:.75rem;font-size:13px;color:var(--text2);text-decoration:none;font-weight:500">LinkedIn →</a>
+<p class="founder-bio">Abbraccio i valori di Stefano e lo affianco nel tramutare visione in strategia e business. Sono Manager nel Banking, nerd, mi definiscono visionario e sono abbastanza iper attivo. Cerco di gestire senza successo il mio fuoco interiore, con cui ogni tanto mi scotto. Sono orgoglioso del network sincero costruito in tanti anni, composto da persone che sanno di potersi fidare ed affidare.</p>
+<a href="https://www.linkedin.com/in/matteorondina/" target="_blank" class="founder-link" style="color:var(--text2)">LinkedIn →</a>
 </div></div>
 <div class="founder-bottom"><div class="founder-tags">
 <span class="tag" style="border-color:var(--teal);color:var(--teal)">/ai</span>
