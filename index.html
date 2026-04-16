@@ -261,6 +261,9 @@ html.dark .hero-shapes .shape{opacity:.06}
 .modal-photo img{width:100%;height:100%;object-fit:cover}
 .modal-photo .modal-initials{font-family:var(--display);font-size:64px;font-weight:500;color:var(--text3)}
 .modal-content{flex:1;padding:2.5rem;position:relative}
+.modal-header-mobile{display:none}
+.modal-scroll{overflow:visible}
+.modal-desktop-info{margin-bottom:0}
 .modal-close{position:absolute;top:1.25rem;right:1.25rem;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s;z-index:1}
 .modal-close:hover{border-color:var(--text)}
 .modal-close span{position:absolute;width:14px;height:1.5px;background:var(--text)}
@@ -352,11 +355,21 @@ html.dark .hero-shapes .shape{opacity:.06}
   .testi:hover{transform:none;box-shadow:none}
   /* Modal */
   .modal-overlay{padding:.5rem}
-  .modal{flex-direction:column;border-radius:16px;max-height:90vh}
-  .modal-photo{width:100%;height:200px;border-radius:16px 16px 0 0}
-  .modal-content{padding:1.75rem}
-  .modal-name{font-size:20px}
-  .modal-text{font-size:15px;line-height:1.8}
+  .modal{flex-direction:column;border-radius:16px;max-height:90vh;overflow:hidden}
+  .modal-photo{display:none}
+  .modal-desktop-info{display:none}
+  .modal-header-mobile{display:flex}
+  .modal-content{padding:0;display:flex;flex-direction:column;overflow:hidden;max-height:90vh}
+  .modal-header-mobile{display:flex;align-items:center;gap:14px;padding:1.5rem 1.75rem;border-bottom:1px solid var(--border);flex-shrink:0}
+  .modal-header-mobile .mh-avatar{width:52px;height:52px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:20px;font-weight:500;color:var(--text3)}
+  .modal-header-mobile .mh-avatar img{width:100%;height:100%;object-fit:cover}
+  .modal-close{top:1rem;right:1rem;width:32px;height:32px}
+  .modal-name{font-size:18px;padding-right:0}
+  .modal-role,.modal-co{font-size:12px}
+  .modal-links{margin-top:.5rem}
+  .modal-links a{font-size:11px;padding:4px 10px}
+  .modal-scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:1.5rem 1.75rem;flex:1}
+  .modal-text{font-size:15px;line-height:1.8;border-top:none;padding-top:0;margin-top:0}
   /* Partners */
   .partner-grid{grid-template-columns:1fr}
   /* Footer */
@@ -676,11 +689,9 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="modal-photo" id="m-photo"></div>
 <div class="modal-content">
 <button class="modal-close" onclick="closeModal()"><span></span><span></span></button>
-<div class="modal-name" id="m-name"></div>
-<div class="modal-role" id="m-role"></div>
-<div class="modal-co" id="m-co"></div>
-<div class="modal-links" id="m-links"></div>
-<div class="modal-text" id="m-text"></div>
+<div class="modal-header-mobile" id="m-mob-header"><div class="mh-avatar" id="m-mob-avatar"></div><div><div class="modal-name" id="m-name2"></div><div class="modal-role" id="m-role2"></div><div class="modal-co" id="m-co2"></div><div class="modal-links" id="m-links2"></div></div></div>
+<div class="modal-desktop-info" id="m-desktop-info"><div class="modal-name" id="m-name"></div><div class="modal-role" id="m-role"></div><div class="modal-co" id="m-co"></div><div class="modal-links" id="m-links"></div></div>
+<div class="modal-scroll"><div class="modal-text" id="m-text"></div></div>
 </div>
 </div>
 </div>
@@ -992,23 +1003,35 @@ function renderTestimonials(){
 
 function openModal(i){
   const t=testimonials[i];
+  /* Desktop photo panel */
   const photo=document.getElementById('m-photo');
   if(t.img){
     photo.innerHTML=`<img src="${t.img}" alt="${t.name}">`;
-    photo.style.display='';
   } else {
     photo.innerHTML=`<div class="modal-initials">${initials(t.name)}</div>`;
-    photo.style.display='';
   }
+  /* Desktop info */
   document.getElementById('m-name').textContent=t.name;
   document.getElementById('m-role').textContent=t.role||'';
   document.getElementById('m-co').textContent=t.co;
-  const links=document.getElementById('m-links');
   let lhtml='';
   if(t.linkedin)lhtml+=`<a href="${t.linkedin}" target="_blank">LinkedIn →</a>`;
   if(t.website)lhtml+=`<a href="${t.website}" target="_blank">Sito web →</a>`;
-  links.innerHTML=lhtml;
-  links.style.display=lhtml?'flex':'none';
+  document.getElementById('m-links').innerHTML=lhtml;
+  document.getElementById('m-links').style.display=lhtml?'flex':'none';
+  /* Mobile header */
+  const mobAvatar=document.getElementById('m-mob-avatar');
+  if(t.img){
+    mobAvatar.innerHTML=`<img src="${t.img}" alt="${t.name}">`;
+  } else {
+    mobAvatar.textContent=initials(t.name);
+  }
+  document.getElementById('m-name2').textContent=t.name;
+  document.getElementById('m-role2').textContent=t.role||'';
+  document.getElementById('m-co2').textContent=t.co;
+  document.getElementById('m-links2').innerHTML=lhtml;
+  document.getElementById('m-links2').style.display=lhtml?'flex':'none';
+  /* Text */
   document.getElementById('m-text').textContent=t.text;
   document.getElementById('testi-modal').classList.add('open');
   document.body.style.overflow='hidden';
