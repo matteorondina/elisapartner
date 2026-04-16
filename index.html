@@ -31,7 +31,7 @@
   --mag:#C2185B;--mag-l:#FCE4EC;--mag-d:#880E4F;
   --sky:#0288D1;--sky-l:#E1F5FE;--sky-d:#01579B;
   --bg:#fafaf8;--bg2:#f0efeb;--bg3:#e8e7e2;
-  --text:#1a1a17;--text2:#5F5E5A;--text3:#9c9a92;
+  --text:#1a1a17;--text2:#3d3c38;--text3:#7a7870;
   --card:#ffffff;--card-h:rgba(0,0,0,.02);
   --border:rgba(0,0,0,.08);--border2:rgba(0,0,0,.12);
   --display:'Playfair Display',Georgia,serif;
@@ -39,7 +39,7 @@
 }
 html.dark{
   --bg:#0e0e0c;--bg2:#1a1a17;--bg3:#252520;
-  --text:#f5f4f0;--text2:#9c9a92;--text3:#6b6a64;
+  --text:#f5f4f0;--text2:#c4c2ba;--text3:#8a887f;
   --card:rgba(255,255,255,.04);--card-h:rgba(255,255,255,.06);
   --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
 }
@@ -239,7 +239,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 .founder-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .tag{font-size:11px;padding:5px 12px;border-radius:20px;font-weight:500;border:1px solid var(--border);color:var(--text2)}
 /* TESTIMONIALS */
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1.5rem 0}
 .testi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;transition:all .3s;cursor:pointer;display:flex;flex-direction:column}
 .testi:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.04)}
 .testi-top{display:flex;align-items:center;gap:12px;margin-bottom:1rem}
@@ -311,7 +311,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeUpCenter{from{opacity:0;transform:translateX(-50%) translateY(24px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 @media(max-width:1024px){
-  .testi-grid{grid-template-columns:repeat(2,1fr)}
+
 }
 @media(max-width:768px){
   .nav-right{display:none}.hamburger{display:flex}
@@ -340,7 +340,16 @@ html.dark .hero-shapes .shape{opacity:.06}
   .founder-top{flex-direction:column;align-items:center;text-align:center;padding:1.5rem}
   .founder-bottom{padding:1rem 1.5rem}
   .founder-tags{justify-content:center}
-  .testi-grid{grid-template-columns:1fr}
+  /* Testimonials mobile */
+  .testi{padding:1.5rem;border-radius:12px}
+  .testi-top{gap:14px;margin-bottom:.75rem}
+  .testi-avatar{width:52px;height:52px;font-size:19px}
+  .testi-name{font-size:15px}
+  .testi-role{font-size:12px}
+  .testi-co{font-size:13px}
+  .testi-preview{font-size:14px;line-height:1.75;-webkit-line-clamp:4}
+  .testi-more{font-size:13px;margin-top:1rem;padding:8px 0;display:block}
+  .testi:hover{transform:none;box-shadow:none}
   /* Modal */
   .modal-overlay{padding:.5rem}
   .modal{flex-direction:column;border-radius:16px;max-height:90vh}
@@ -639,6 +648,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="founder-role">Business & Finance</div>
 <p class="founder-bio">Abbraccio i valori di Stefano e lo affianco nel tramutare visione in strategia e business. Sono Manager nel Banking, nerd, mi definiscono visionario e sono abbastanza iper attivo. Cerco di gestire senza successo il mio fuoco interiore, con cui ogni tanto mi scotto. Sono orgoglioso del network sincero costruito in tanti anni, composto da persone che sanno di potersi fidare ed affidare.</p>
 <a href="https://www.linkedin.com/in/matteorondina/" target="_blank" class="founder-link" style="color:var(--teal)">LinkedIn →</a>
+<a href="https://matteorondina.it" target="_blank" class="founder-link" style="color:var(--teal);margin-left:.75rem">Sito web →</a>
 </div></div>
 <div class="founder-bottom"><div class="founder-tags">
 <span class="tag" style="border-color:var(--teal);color:var(--teal)">/ai</span>
