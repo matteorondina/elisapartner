@@ -239,13 +239,40 @@ html.dark .hero-shapes .shape{opacity:.06}
 .founder-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .tag{font-size:11px;padding:5px 12px;border-radius:20px;font-weight:500;border:1px solid var(--border);color:var(--text2)}
 /* TESTIMONIALS */
-.testi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1.5rem 0}
-.testi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;transition:border-color .3s}
-.testi:hover{border-color:var(--border2)}
-.testi-text{font-size:14px;color:var(--text2);line-height:1.7;font-style:italic;font-weight:300;min-height:60px}
-.testi-author{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
-.testi-name{font-weight:600;font-size:14px}
-.testi-co{font-size:12px;color:var(--text3);font-weight:300;margin-top:2px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0}
+.testi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;transition:all .3s;cursor:pointer;display:flex;flex-direction:column}
+.testi:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.04)}
+.testi-top{display:flex;align-items:center;gap:12px;margin-bottom:1rem}
+.testi-avatar{width:48px;height:48px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:18px;font-weight:500;color:var(--text3)}
+.testi-avatar img{width:100%;height:100%;object-fit:cover}
+.testi-info{flex:1}
+.testi-name{font-weight:600;font-size:14px;line-height:1.3}
+.testi-role{font-size:11px;color:var(--text3);font-weight:300;margin-top:1px}
+.testi-co{font-size:12px;color:var(--teal);font-weight:400}
+.testi-preview{font-size:13px;color:var(--text2);line-height:1.7;font-style:italic;font-weight:300;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.testi-more{font-size:12px;color:var(--teal);font-weight:500;margin-top:.75rem;display:inline-block}
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:2rem}
+.modal-overlay.open{display:flex;animation:modalIn .3s ease}
+@keyframes modalIn{from{opacity:0}to{opacity:1}}
+.modal{background:var(--bg);border:1px solid var(--border);border-radius:20px;max-width:780px;width:100%;max-height:85vh;overflow-y:auto;position:relative;animation:modalSlide .35s ease;display:flex}
+@keyframes modalSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.modal-photo{width:260px;flex-shrink:0;border-radius:20px 0 0 20px;overflow:hidden;background:var(--bg2);display:flex;align-items:center;justify-content:center}
+.modal-photo img{width:100%;height:100%;object-fit:cover}
+.modal-photo .modal-initials{font-family:var(--display);font-size:64px;font-weight:500;color:var(--text3)}
+.modal-content{flex:1;padding:2.5rem;position:relative}
+.modal-close{position:absolute;top:1.25rem;right:1.25rem;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s;z-index:1}
+.modal-close:hover{border-color:var(--text)}
+.modal-close span{position:absolute;width:14px;height:1.5px;background:var(--text)}
+.modal-close span:first-child{transform:rotate(45deg)}
+.modal-close span:last-child{transform:rotate(-45deg)}
+.modal-name{font-family:var(--display);font-size:24px;font-weight:500;letter-spacing:-.5px}
+.modal-role{font-size:13px;color:var(--text3);font-weight:300;margin-top:2px}
+.modal-co{font-size:14px;color:var(--teal);font-weight:400;margin-top:1px}
+.modal-links{display:flex;gap:10px;margin-top:.75rem}
+.modal-links a{font-size:12px;color:var(--teal);text-decoration:none;font-weight:500;padding:5px 14px;border:1px solid var(--border);border-radius:6px;transition:all .2s}
+.modal-links a:hover{border-color:var(--teal)}
+.modal-text{font-size:16px;color:var(--text2);line-height:1.85;font-weight:300;font-style:italic;border-top:1px solid var(--border);padding-top:1.5rem;margin-top:1.25rem}
 
 /* PARTNERS */
 .partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin:1.5rem 0;border-radius:12px;overflow:hidden}
@@ -314,6 +341,13 @@ html.dark .hero-shapes .shape{opacity:.06}
   .founder-bottom{padding:1rem 1.5rem}
   .founder-tags{justify-content:center}
   .testi-grid{grid-template-columns:1fr}
+  /* Modal */
+  .modal-overlay{padding:.5rem}
+  .modal{flex-direction:column;border-radius:16px;max-height:90vh}
+  .modal-photo{width:100%;height:200px;border-radius:16px 16px 0 0}
+  .modal-content{padding:1.75rem}
+  .modal-name{font-size:20px}
+  .modal-text{font-size:15px;line-height:1.8}
   /* Partners */
   .partner-grid{grid-template-columns:1fr}
   /* Footer */
@@ -601,10 +635,10 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="founder-avatar"><img src="img/matteo.png" alt="Matteo Rondina"></div>
 <div class="founder-info">
 <div class="founder-name">Matteo Rondina</div>
-<div class="founder-claim" style="color:var(--text2)">Costruttore di ponti</div>
+<div class="founder-claim" style="color:var(--teal)">Costruttore di ponti</div>
 <div class="founder-role">Business & Finance</div>
 <p class="founder-bio">Abbraccio i valori di Stefano e lo affianco nel tramutare visione in strategia e business. Sono Manager nel Banking, nerd, mi definiscono visionario e sono abbastanza iper attivo. Cerco di gestire senza successo il mio fuoco interiore, con cui ogni tanto mi scotto. Sono orgoglioso del network sincero costruito in tanti anni, composto da persone che sanno di potersi fidare ed affidare.</p>
-<a href="https://www.linkedin.com/in/matteorondina/" target="_blank" class="founder-link" style="color:var(--text2)">LinkedIn →</a>
+<a href="https://www.linkedin.com/in/matteorondina/" target="_blank" class="founder-link" style="color:var(--teal)">LinkedIn →</a>
 </div></div>
 <div class="founder-bottom"><div class="founder-tags">
 <span class="tag" style="border-color:var(--teal);color:var(--teal)">/ai</span>
@@ -622,25 +656,23 @@ html.dark .hero-shapes .shape{opacity:.06}
 <div class="divider"></div>
 <div class="sub">Abbiamo incontrato Elisa</div>
 
-<div class="testi-grid">
-<div class="testi">
-<div class="testi-text">Referenza in arrivo.</div>
-<div class="testi-author"><div class="testi-name">Juri Franzosi</div><div class="testi-co">BuildVision / L22</div></div>
-</div>
-<div class="testi">
-<div class="testi-text">Referenza in arrivo.</div>
-<div class="testi-author"><div class="testi-name">Davide Olivi</div><div class="testi-co">Moowe</div></div>
-</div>
-<div class="testi">
-<div class="testi-text">Referenza in arrivo.</div>
-<div class="testi-author"><div class="testi-name">Luigi Selva Verzica</div><div class="testi-co">SVS Lex</div></div>
-</div>
-<div class="testi">
-<div class="testi-text">Referenza in arrivo.</div>
-<div class="testi-author"><div class="testi-name">Enrico Marconi</div><div class="testi-co">Studio Enrico Marconi</div></div>
-</div>
+<div class="testi-grid" id="testi-grid"></div>
+
 </div>
 
+<!-- Testimonial Modal -->
+<div class="modal-overlay" id="testi-modal" onclick="if(event.target===this)closeModal()">
+<div class="modal">
+<div class="modal-photo" id="m-photo"></div>
+<div class="modal-content">
+<button class="modal-close" onclick="closeModal()"><span></span><span></span></button>
+<div class="modal-name" id="m-name"></div>
+<div class="modal-role" id="m-role"></div>
+<div class="modal-co" id="m-co"></div>
+<div class="modal-links" id="m-links"></div>
+<div class="modal-text" id="m-text"></div>
+</div>
+</div>
 </div>
 <div class="cross-nav"><div class="areas-grid">
 <div class="area" data-c="mag" onclick="go('marketing')"><div class="a-slash" style="color:var(--mag)">/marketing</div><div class="a-label">Marketing Partner</div><div class="a-arrow">Scopri →</div></div>
@@ -905,6 +937,83 @@ function togglePrice(el){
   const body=el.nextElementSibling;
   body.classList.toggle('open');
 }
+
+/* ===== TESTIMONIALS ===== */
+const testimonials=[
+{name:"Marco Beretta",co:"Build Vision",role:"",img:"",
+text:`Quando vendevo borse di coccodrillo e di struzzo in Giappone 35 anni fa, persi un grosso ordine perchè arrivai con 8 minuti di ritardo, inaccettabili per la loro cultura. Da allora ho sviluppato un Disturbo Ossessivo Compulsivo sugli orari. In questi 3 anni di lavoro insieme a Milano ho chiamato Stefano ossessivamente "dove sei? Quanto ti manca? Sei in ritardo?". Mi ha sopportato in modo "commovente", senza mai scomporsi, con mitezza, pazienza e grande professionalità. Che bello! Mi son sentito voluto bene, come ci si sente con un caro amico. Anche nelle mie debolezze e piccole ossessioni. Questo ha voluto dire che abbiamo lavorato bene, con intensità, passione e sempre ripartendo nei momenti piu' incasinati. La caratteristica principale di Stefano che mi entusiasma è l'improvvisazione. "Portarla a casa" in ogni situazione. Una critica? Difficile criticare chi ti vuole bene, davvero complicato. Però due volte è arrivato con circa 5 minuti e 30 secondi di ritardo. Deve migliorare!`},
+{name:"Elisabetta Boldrini",co:"Gitaly srl",role:"Direttore Commerciale",img:"img/testi/boldrini.jpg",linkedin:"https://www.linkedin.com/in/elisabetta-boldrini-24a14a52/",website:"https://www.gitalycontract.com/",
+text:`Collaborare con Elisa Marketing, in particolare con Stefano, significa avere al proprio fianco un team davvero smart, capace di trovare sempre la soluzione giusta con rapidità ed efficacia. L'esperienza avuta con loro è stata un supporto prezioso soprattutto quando si avvia una nuova attività: riescono a semplificare ogni passaggio, rendendo tutto più chiaro e gestibile. Un altro aspetto che ho particolarmente apprezzato è il modo in cui trasformano la formazione in un'esperienza coinvolgente e stimolante, mai noiosa. Con Elisa Marketing, il marketing diventa davvero accessibile a tutti, senza rinunciare a professionalità e visione strategica. Il tutto si svolge in un clima amichevole senza venir meno a serietà e rispetto per tempi e budget concordati. Un partner affidabile, concreto e orientato al risultato.`},
+{name:"Fabio Tonti",co:"Pensare Web srl",role:"Project Manager",img:"",
+text:`Grazie a tutto il team per la collaborazione straordinaria in questi anni. Ogni progetto realizzato insieme è stato un'opportunità di crescita, resa possibile dalla vostra professionalità, competenza e disponibilità costante. Siete sempre sul pezzo, con un approccio che unisce qualità e gentilezza — qualità rare e preziose. È un vero piacere lavorare con voi, e non vediamo l'ora di affrontare insieme nuove sfide!`},
+{name:"Arianna Chiarabilli",co:"Enereco S.p.A.",role:"Marketing & Communication Officer",img:"",
+text:`Sto collaborando con Elisa Marketing su un progetto di rebranding estremamente importante per l'azienda in cui lavoro. Essere formati ed affiancati da un professionista competente come Stefano fa la differenza! Mi piace molto il suo approccio di lavoro e la sua capacità di ascoltare i bisogni dell'azienda e di saperli interpretare, senza troppa esuberanza ma con entusiasmo e coinvolgimento. Un ottimo comunicatore ed un coach esperto ma soprattutto una persona che lascia spazio alla condivisione di idee e riflessioni, senza giudizio, come un amico fidato con cui ti incontri almeno una volta a settimana!!!`},
+{name:"Serena Fucili",co:"Unionmoda",role:"Ufficio Marketing",img:"",
+text:`Ho lavorato assieme a Stefano e, anche se solo per qualche mese, ho capito fin da subito che persona valida fosse. Un pozzo di conoscenza (sia teorica che pratica), sempre disponibile e pronto ad aiutare, spiegare nuove cose e risolvere dubbi. Per me è un punto solido su cui poter far affidamento al 100%.`},
+{name:"Enrico Franci",co:"VL Victoria Libertas",role:"Sponsorship & Partnership",img:"",
+text:`Ho conosciuto Stefano diversi anni fa, in una fase in cui mi stavo avvicinando al mondo del marketing digitale. Il suo contributo è stato determinante: grazie a un approccio chiaro, concreto e orientato al risultato, mi ha permesso di comprendere come un'attenta analisi di un'azienda o di un brand possa generare opportunità strategiche e operative di grande valore. La sua capacità di semplificare concetti complessi e trasformarli in azioni efficaci e anche creative rappresenta un elemento distintivo del suo modo di lavorare. Ritengo Stefano un professionista affidabile e competente, capace di portare valore reale ai progetti in cui è coinvolto.`},
+{name:"Wilson Santinelli",co:"Wilson Santinelli Srls",role:"Titolare",img:"",
+text:`Sempre un passo avanti rispetto agli altri, direzione creativa mai banale.`},
+{name:"Alessia Conti",co:"Unionmoda",role:"",img:"",
+text:`Arrivavo da un mondo totalmente diverso e non ero per niente sicura di farcela. Stefano è stato per me una guida. Mi ha accompagnata passo dopo passo, con pazienza e disponibilità. Ho imparato davvero tanto lavorando con lui, ma la cosa che ho apprezzato di più è stata la sua capacità di farmi sentire sempre all'altezza della situazione. E non è affatto scontato. Per questo, dopo due anni di lavoro insieme, posso dire che il suo supporto ha fatto davvero la differenza nel mio percorso.`},
+{name:"Elena Stoppioni",co:"Lombardini22",role:"ESG Director",img:"",
+text:`Nel nostro lavoro c'è troppa strategia dichiarata e poca strategia reale. Stefano sta nella seconda categoria: quella di chi legge i segnali, li tiene insieme e li trasforma in traiettorie che gli altri riescono a percorrere. BuildVision funziona anche per questo.`}
+];
+
+function initials(name){return name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2)}
+
+function renderTestimonials(){
+  const grid=document.getElementById('testi-grid');
+  grid.innerHTML=testimonials.map((t,i)=>`
+    <div class="testi" onclick="openModal(${i})">
+      <div class="testi-top">
+        <div class="testi-avatar">${t.img?`<img src="${t.img}" alt="${t.name}">`:initials(t.name)}</div>
+        <div class="testi-info">
+          <div class="testi-name">${t.name}</div>
+          ${t.role?`<div class="testi-role">${t.role}</div>`:''}
+          <div class="testi-co">${t.co}</div>
+        </div>
+      </div>
+      <div class="testi-preview">${t.text}</div>
+      <div class="testi-more">Leggi di più →</div>
+    </div>
+  `).join('');
+}
+
+function openModal(i){
+  const t=testimonials[i];
+  const photo=document.getElementById('m-photo');
+  if(t.img){
+    photo.innerHTML=`<img src="${t.img}" alt="${t.name}">`;
+    photo.style.display='';
+  } else {
+    photo.innerHTML=`<div class="modal-initials">${initials(t.name)}</div>`;
+    photo.style.display='';
+  }
+  document.getElementById('m-name').textContent=t.name;
+  document.getElementById('m-role').textContent=t.role||'';
+  document.getElementById('m-co').textContent=t.co;
+  const links=document.getElementById('m-links');
+  let lhtml='';
+  if(t.linkedin)lhtml+=`<a href="${t.linkedin}" target="_blank">LinkedIn →</a>`;
+  if(t.website)lhtml+=`<a href="${t.website}" target="_blank">Sito web →</a>`;
+  links.innerHTML=lhtml;
+  links.style.display=lhtml?'flex':'none';
+  document.getElementById('m-text').textContent=t.text;
+  document.getElementById('testi-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('testi-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+testimonials.sort((a,b)=>a.name.localeCompare(b.name,'it')||a.co.localeCompare(b.co,'it'));
+
+renderTestimonials();
 </script>
 </body>
 </html>
