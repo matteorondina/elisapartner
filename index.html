@@ -62,6 +62,7 @@ nav.scrolled{background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-fi
 .nav-left{display:flex;align-items:center}
 .nav-logo{font-family:var(--display);font-size:22px;font-weight:500;letter-spacing:-.5px;cursor:pointer;color:var(--text);white-space:nowrap}
 .nav-logo .sl{transition:color .35s,opacity .35s}
+.lg{display:inline-block;height:1em;aspect-ratio:154/46;background-color:currentColor;-webkit-mask:url(img/elisa-logo.png) center/contain no-repeat;mask:url(img/elisa-logo.png) center/contain no-repeat;vertical-align:-0.08em}
 .nav-right{display:flex;align-items:center;gap:2px}
 .nav-right a{text-decoration:none;color:var(--text3);font-size:12px;font-weight:500;padding:7px 14px;border-radius:6px;transition:all .2s;letter-spacing:.5px;text-transform:uppercase}
 .nav-right a:hover{color:var(--text)}
@@ -393,7 +394,7 @@ html.dark .hero-shapes .shape{opacity:.06}
 <body>
 
 <nav id="main-nav">
-<div class="nav-left"><div class="nav-logo" onclick="go('home')">elisa<span class="sl" id="nav-sl" style="color:var(--text3)"> /partner</span></div></div>
+<div class="nav-left"><div class="nav-logo" onclick="go('home')"><span class="lg" role="img" aria-label="elisa"></span><span class="sl" id="nav-sl" style="color:var(--text3)"> /partner</span></div></div>
 <div class="nav-right">
   <a href="#" class="nav-home active" onclick="go('home');return false" data-v="home" id="n-home"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
   <a href="#" onclick="go('marketing');return false" data-v="marketing" id="n-marketing">/marketing</a>
@@ -905,7 +906,7 @@ const slashMap={marketing:{t:' /marketing',c:'var(--mag)'},impact:{t:' /impact',
 
 /* ===== PREFOOTER inject ===== */
 const pfHTML=`<div class="pf-grid">
-<div class="pf-col"><div class="pf-logo">elisa <span style="color:var(--text3)">/partner</span></div>
+<div class="pf-col"><div class="pf-logo"><span class="lg" role="img" aria-label="elisa"></span> <span style="color:var(--text3)">/partner</span></div>
 <p class="pf-tagline">Consulenza strategica e manageriale per persone e aziende che vogliono vivere e lavorare con intelligenza, metodo e impatto.</p></div>
 <div class="pf-col"><h4>Contatti</h4>
 <div class="pf-btns">
@@ -918,7 +919,7 @@ const pfHTML=`<div class="pf-grid">
 <a style="cursor:default">61032 Fano (PU)</a>
 <a style="cursor:default">P.IVA 02628770410</a></div>
 </div>
-<div class="pf-bottom"><div class="pf-b-logo">elisa<span class="pf-sl" style="color:var(--text3)"> /partner</span></div><div>© Elisa S.r.l. Società Benefit 2026 · <a href="#" onclick="go('cookie');return false" style="color:var(--text3);text-decoration:none">Cookie Policy</a></div></div>`;
+<div class="pf-bottom"><div class="pf-b-logo"><span class="lg" role="img" aria-label="elisa"></span><span class="pf-sl" style="color:var(--text3)"> /partner</span></div><div>© Elisa S.r.l. Società Benefit 2026 · <a href="#" onclick="go('cookie');return false" style="color:var(--text3);text-decoration:none">Cookie Policy</a></div></div>`;
 document.querySelectorAll('.prefooter').forEach(el=>el.innerHTML=pfHTML);
 
 /* ===== PAGE NAV with hash routing ===== */
@@ -992,7 +993,7 @@ text:`Arrivavo da un mondo totalmente diverso e non ero per niente sicura di far
 {name:"Elena Stoppioni",co:"Lombardini22",role:"ESG Director",img:"img/testi/stoppioni.jpg",
 text:`Nel nostro lavoro c'è troppa strategia dichiarata e poca strategia reale. Stefano sta nella seconda categoria: quella di chi legge i segnali, li tiene insieme e li trasforma in traiettorie che gli altri riescono a percorrere. BuildVision funziona anche per questo.`},
 {name:"Marco Brezza",co:"Maggioli Editore",role:"Web Editor",img:"img/testi/brezza.jpg",
-text:`Ci siamo rivolti a loro per ridefinire la nostra strategia editoriale in un mercato dove il prodotto tradizionale — riviste, banche dati, manuali — non basta più a trattenere lettori professionali. L'aspetto più utile non è stata una soluzione preconfezionata, ma il metodo: prima esplorare le domande giuste insieme al team, mettendo in comune esperienze e competenze, poi costruire le risposte. Questo ci ha portato a distinguere con chiarezza cosa è prodotto editoriale e cosa è community — una distinzione che davamo per scontata e che invece stava generando ambiguità nelle scelte di prodotto. Il percorso è stato concreto e progressivo, e ci ha consegnato un metodo di lavoro vero e proprio più che un risultato chiuso.`},
+text:`Ci siamo rivolti a loro per ridefinire la nostra strategia editoriale in un mercato dove il prodotto tradizionale (riviste, banche dati, manuali) non basta più a trattenere lettori professionali. L'aspetto più utile non è stata una soluzione preconfezionata, ma il metodo: prima esplorare le domande giuste insieme al team, mettendo in comune esperienze e competenze, poi costruire le risposte. Ci ha colpito la capacità di pescare riferimenti ed esempi dai contesti più diversi — dallo spettacolo al marketing territoriale, dalla musica alla comunicazione digitale e usarli per smontare e ricostruire i meccanismi che stavamo dando per scontati. Questo ci ha portato a distinguere con chiarezza cosa è prodotto editoriale e cosa è community, una distinzione che generava ambiguità nelle scelte di prodotto. Il percorso è stato concreto e progressivo, e ci ha consegnato un metodo di lavoro vero e proprio più che un risultato chiuso.`},
 {name:"Matteo Gelsomini",co:"ASD Metauro Basket Academy",role:"Dirigente",img:"",
 text:`Per me parlare di Elisa Marketing vuol dire parlare anche di Stefano. È stato uno dei fondatori della nostra associazione ed è sempre stato un punto fermo. Non si è mai occupato solo di comunicazione, ma tante idee, progetti, analisi e scelte importanti sono passate da lui, o comunque dai suoi suggerimenti e dalle sue proposte. Per me e per tutti noi il rapporto non è solo di lavoro, ma dopo tanti anni è diventato amicizia e di fiducia. Se oggi abbiamo costruito quello che abbiamo, per tanti motivi è sicuramente molto merito suo.`},
 {name:"Riccardo Severini",co:"Andreani Group",role:"Marketing Manager",img:"img/testi/severini.jpg",
